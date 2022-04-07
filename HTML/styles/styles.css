@@ -1,0 +1,28 @@
+* {
+    padding: 0;
+    margin: 0;
+}
+
+h1 {
+    background-color: black;
+    color: antiquewhite;
+}
+.menu_item {
+    background-color: black;
+}
+.menu_item nav ul li a {
+    text-decoration: none;
+    color: rgb(191, 211, 11);
+    padding: 21px 37px;
+    border-radius: 3px;
+}
+.menu_container {
+    display: flex;
+}
+.menu_item nav ul{
+    display: flex;
+}
+
+.title_container {
+    display: flex;
+}

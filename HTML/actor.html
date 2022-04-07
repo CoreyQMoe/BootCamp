@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        function validate() {
+            var inputValue = document.getElementById("firstNameId").value;
+            
+            if (inputValue == '') {
+                alert("FName req");
+                return false;
+            }
+            return true;
+        }
+    </script>
+    <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
+
+</head>
+<body>
+    <p>Here is some text</p>
+    <form onsubmit="validate()">
+        First Name <input type="text" name="firstName" id="firstNameId"><br>
+        Last Name <input type="text" name="lastName" id="lastNameId"></br>
+    
+        <button type="submit">Submit</button>
+    </form>
+    
+ 
+
+    <script>
+        const button = document.querySelector('button');
+        const changeText = () => {
+            const p = document.querySelector('p');
+        
+            p.textContent = "I have been changed by an event";
+            button.textContent = "I was clicked";
+            p.style.backgroundColor = "cyan";
+        }
+
+        const mouseOut = () => {
+            const p = document.querySelector('p');
+            p.textContent = "mouse out";
+            p.style.backgroundColor = "blue";
+
+        }
+        button.addEventListener('mouseover', changeText);
+            button.addEventListener('mouseout', mouseOut);
+        </script>
+</body>
+<!-- addEventListener -->
+</html>

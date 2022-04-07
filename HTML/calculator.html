@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Calculator Demo</title>
+  </head>
+  <style>
+    body {
+      padding: 3px;
+      margin: 3px;
+    }
+    .calcContainer {
+      border: 5px solid green;
+      width: 200px;
+      height: 300px;
+
+      margin: 1px;
+      padding: 1px;
+    }
+    #readOut {
+      border: 1px solid red;
+      text-align: right;
+      height: 7%;
+      margin: 1px;
+    }
+    .buttonGrid {
+      display: grid;
+      margin: 1px;
+      grid-template-columns: 0.75fr 1.25fr 0.75fr 1.25fr;
+      height: 91%;
+    }
+    .button {
+      border: 1px solid red;
+      text-align: center;
+      margin: 1px;
+    }
+
+    .button:hover {
+      background-color: #323330;
+      color: white;
+      transition: 0.5s ease-in-out;
+    }
+    #equal {
+      grid-column: span 3;
+    }
+  </style>
+  <body>
+    <section>
+      <div class="calcContainer">
+        <div id="readOut"></div>
+
+        <div class="buttonGrid">
+          <div class="button">7</div>
+          <div class="button">8</div>
+          <div class="button">9</div>
+          <div class="button">C</div>
+          <div class="button">4</div>
+          <div class="button">5</div>
+          <div class="button">6</div>
+          <div class="button">/</div>
+          <div class="button">1</div>
+          <div class="button">2</div>
+          <div class="button">3</div>
+          <div class="button">*</div>
+          <div class="button">0</div>
+          <div class="button">00</div>
+          <div class="button">.</div>
+          <div class="button">+</div>
+          <div id="equal" class="button">=</div>
+          <div class="button">-</div>
+        </div>
+      </div>
+    </section>
+  </body>
+</html>

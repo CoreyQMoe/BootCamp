@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <style>
+      #textInput input {
+        display: block;
+      }
+      form {
+        margin: 10px;
+      }
+      #mydiv {
+        border: 2px solid green;
+        width: fit-content;
+        justify-content: space-evenly;
+      }
+    </style>
+    <title>Document</title>
+  </head>
+  <body>
+    <div id="mydiv">
+      <h1>Register Page</h1>
+      <form action="">
+        <div id="textInput">
+          <label for="fName">First Name:</label>
+          <input type="text" placeholder="Enter First Name" name="fName" id="fName" />
+          <label for="lName">Last Name:</label>
+          <input type="text" placeholder="Enter Last Name" name="lName" id="lName" />
+          <label for="email">Email:</label>
+          <input type="email" placeholder="Enter Email" name="email" id="email" />
+          <label for="password">Password:</label>
+          <input type="text" placeholder="Enter Password" name="password" id="password" />
+          <label for="cPassword">Confrim Password:</label>
+          <input type="text" placeholder="Confirm Password" name="cPassword" id="cPassword" />
+        </div>
+        <div>
+          <span>Gender:</span>
+          <input type="radio" name="gender" id="female" />
+          <label for="female">Female</label>
+          <input type="radio" name="gender" id="male" />
+          <label for="male">Male</label>
+        </div>
+        <div id="textInput">
+          <label for="dob">Date of Birth:</label>
+          <input type="date" name="dob" id="dob" />
+        </div>
+        <div>
+         <span>Habits:</span>
+          <input type="checkbox" name="dnd" id="dnd" />
+          <label for="dnd">Dungeons & Dragons</label>
+
+          <input type="checkbox" name="sports" id="sports" />
+          <label for="sports">Sports</label>
+
+          <input type="checkbox" name="sleep" id="sleep" />
+          <label for="sleep">Sleep</label>
+        </div>
+        <input type="submit" name="submit" id="register" value="Register" />
+      </form>
+    </div>
+  </body>
+</html>
