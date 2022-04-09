@@ -10,10 +10,10 @@
             <h1 id="logo">Heroes</h1>
             <form action="" style="padding-bottom: 4%" name="loginForm">
                 <div>
-                    <label for="username">Enter Username:</label>
+                    <label for="username">Enter Email Address:</label>
                 </div>
                 <div>
-                    <input type="text" id="username" name="username" placeholder="Enter Username" />
+                    <input type="text" id="username" name="username" placeholder="Enter Email Address" />
                     <p id="usernameError" class="errorMessage" name="usernameError">
                         Username cannot be blank
                     </p>

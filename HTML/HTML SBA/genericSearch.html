@@ -16,27 +16,27 @@
   </head>
   <body>
     <div class="mainContent">
-        <div class="topButtons" style="text-align: center;">
+        <div class="topButtons">
             <a
               href="#"
-              id="searchButton"
-              class="btn btn-outline-success butns"
+              id="transactionPageButton"
+              class="btn btn-outline-success"
               role="button"
-              >Search</a
+              >Transactions</a
             >
             <a
               href="#"
-              id="searchButton"
+              id="itemPageButton"
               class="btn btn-outline-success"
               role="button"
-              >Search</a
+              >Items</a
             >
             <a
               href="#"
-              id="searchButton"
+              id="editEmployeePageButton"
               class="btn btn-outline-success"
               role="button"
-              >Search</a
+              >Employees</a
             >
         </div>
       <div class="innerContent">
@@ -48,17 +48,12 @@
           id="searchForm"
           name="searchForm"
         >
-          <div>
-            <p>For what would you like to search?</p>
-            <p></p>
-          </div>
-
-          <div>
+        <div>
             <label for="searchThrough"
               >What would you like to search through:
             </label>
-          </div>
-          <div class="raadioButtons">
+        </div>
+        <div class="radioButtons">
             <input
               type="radio"
               id="itemsRadio"
@@ -77,14 +72,15 @@
             <label for="employeeRadio">Employees</label>
             <input
               type="radio"
-              id="Customers"
+              id="transactions"
               class="radioButton"
               name="searchThrough"
               value="customers"
             />
-            <label for="customers">Customers</label>
-          </div>
-          <div>
+            <label for="transactions">Transactions</label>
+        </div>
+        <div class="searchFilters">
+        <div>
             <label for="searchFilter">Search By:</label>
           </div>
           <div>
@@ -97,6 +93,7 @@
               <option value=""></option>
             </select>
           </div>
+        </div>
           <div>
             <label for="searchCriteria">Search Criteria:</label>
           </div>

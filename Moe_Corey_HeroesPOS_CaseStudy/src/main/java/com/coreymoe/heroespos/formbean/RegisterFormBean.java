@@ -1,5 +1,6 @@
 package com.coreymoe.heroespos.formbean;
 
+import com.coreymoe.heroespos.validation.EmailUnique;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
@@ -19,6 +20,7 @@ public class RegisterFormBean {
 
     private String confirmPassword;
 
+    @EmailUnique(message = "An Employee was found with that email.")
     private String email;
 
     private Integer phoneNumber;

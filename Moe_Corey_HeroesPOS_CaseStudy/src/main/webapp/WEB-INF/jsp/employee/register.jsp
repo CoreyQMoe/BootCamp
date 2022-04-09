@@ -194,7 +194,7 @@
             </div>
             <div>
                 <select name="reportsTo" id="reportsTo">
-                    <option value="0" selected disabled hidden>Select Your Superior:</option>
+                    <option value="0" selected disabled hidden>Select Your Superior</option>
                     <option value="1">Fill me from the DATABASE</option>
                     <option value="2">Option</option>
                 </select>
