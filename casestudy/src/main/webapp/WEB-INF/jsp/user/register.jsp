@@ -55,12 +55,13 @@
 <%--    </C:forEach>--%>
 <%--</c:if>--%>
 
-<c:if test="${bindingReulst.hasErrors()}">
-    <br>
-    <C:forEach itesms="${bindingReulst.getAllErrors()}" var="error">
-        <div style="color: red;">
-                ${error.getDefaultMessage()}
-        </div>
-    </C:forEach>
-</c:if>
+<%--<c:if test="${bindingReulst.hasErrors()}">--%>
+<%--    <br>--%>
+<%--    <C:forEach itesms="${bindingReulst.getAllErrors()}" var="error">--%>
+<%--        <div style="color: red;">--%>
+<%--                ${error.getDefaultMessage()}--%>
+<%--        </div>--%>
+<%--    </C:forEach>--%>
+<%--</c:if>--%>
+
 <jsp:include page="../include/footer.jsp"/>

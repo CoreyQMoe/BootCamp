@@ -38,7 +38,7 @@
                 </div>
             </form>
             <div id="newUserLink">
-                <a href="registrationPage.html">Register New User</a>
+                <a href="register.jsp">Register New User</a>
             </div>
         </div>
     </div>

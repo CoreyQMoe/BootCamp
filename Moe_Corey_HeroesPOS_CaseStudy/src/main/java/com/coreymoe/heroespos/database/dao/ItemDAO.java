@@ -12,19 +12,19 @@ import java.util.List;
 @Repository
 public interface ItemDAO  extends JpaRepository<Item, Long> {
 
-    Item findItemById(@Param("id") Integer id);
+    Item findById(@Param("id") Integer id);
 
-    Item findItemByName(@Param("name") String name);
+    Item findByName(@Param("name") String name);
 
-    List<Item> findItemByDescriptionIgnoreCaseContaining(@Param("description") String description);
+    List<Item> findByDescriptionIgnoreCaseContaining(@Param("description") String description);
 
-    List<Item> findItemByPrice(@Param("price") Double price);
+    List<Item> findByPrice(@Param("price") Double price);
 
-    List<Item> findItemByCost(@Param("cost") Double cost);
+    List<Item> findByCost(@Param("cost") Double cost);
 
-    List<Item> findItemByActive(@Param("active") Boolean active);
+    List<Item> findByActive(@Param("active") Boolean active);
 
-    List<Item> findItemByDepartment(@Param("department") Department department);
+    List<Item> findByDepartment(@Param("department") Department department);
 
-    List<Item> findItemByVendor(@Param("vendor") Vendor vendor);
+    List<Item> findByVendor(@Param("vendor") Vendor vendor);
 }

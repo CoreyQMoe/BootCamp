@@ -13,10 +13,12 @@
     />
 <%--    <script type="text/javascript" src="./script/loginPage.js" defer></script>--%>
     <title>Heroes Login</title>
+    <script src="jquery-3.6.0.min.js"></script>
 </head>
 <body>
 <div class="container">
     <a href="/index">Index</a>|
     <a href="/user/register">SignUp</a>
     <a href="/user/search">Search</a>
+    <a href="/ajax">Ajax</a>
     <hr>

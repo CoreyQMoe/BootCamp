@@ -7,7 +7,8 @@
     <div class="innerContent">
         <h1 class="pageLabel">Register for</h1>
         <h1 id="logo">Heroes</h1>
-        <form action="/user/registerPage" method="post" style="padding-bottom: 4%" id="registrationForm" name="registrationForm">
+        <form action="/employee/registerSubmit" method="get" style="padding-bottom: 4%" id="registrationForm"
+              name="registrationForm">
             <div class="outerRegDiv">
                 <div class="innerRegDiv">
                     <div>
@@ -57,14 +58,29 @@
                     </div>
                 </div>
             </div>
-            <div>
-                <label for="email">Enter Email:</label>
-            </div>
-            <div>
-                <input type="email" id="email" name="email" placeholder="Enter Email"/>
-                <p id="emailError" class="errorMessage">
-                    Email cannot be blank
-                </p>
+            <div class="outerRegDiv">
+                <div class="innerRegDiv">
+                    <div>
+                        <label for="email">Enter Email:</label>
+                    </div>
+                    <div>
+                        <input type="email" id="email" name="email" placeholder="Enter Email"/>
+                        <p id="emailError" class="errorMessage">
+                            Email cannot be blank
+                        </p>
+                    </div>
+                </div>
+                <div class="innerRegDiv">
+                    <div>
+                        <label for="phoneNumber">Enter Phone Number:</label>
+                    </div>
+                    <div>
+                        <input type="tel" id="phoneNumber" name="phoneNumber" placeholder="Enter Phone Number"/>
+                        <p id="phoneError" class="errorMessage">
+                            Phone number cannot be blank
+                        </p>
+                    </div>
+                </div>
             </div>
             <div class="outerRegDiv">
                 <div class="innerRegDiv">
@@ -165,22 +181,33 @@
                 </div>
             </div>
             <div>
-                <label for="zip">Enter Zip Code:</label>
+                <label for="zipCode">Enter Zip Code:</label>
             </div>
             <div>
-                <input type="number" id="zip" name="zip" placeholder="Enter Zip Code"/>
+                <input type="number" id="zipCode" name="zipCode" placeholder="Enter Zip Code"/>
                 <p id="zipError" class="errorMessage">
                     Zip code cannot be blank
                 </p>
             </div>
             <div>
-                <a
-                        href="loginPage.html"
+                <label for="reportsTo">Who Do You Report To:</label>
+            </div>
+            <div>
+                <select name="reportsTo" id="reportsTo">
+                    <option value="0" selected disabled hidden>Select Your Superior:</option>
+                    <option value="1">Fill me from the DATABASE</option>
+                    <option value="2">Option</option>
+                </select>
+                <p>You must select your superior</p>
+            </div>
+            <div>
+                <button
                         id="submitButton"
                         class="btn btn-outline-success"
-                        role="button"
+                        type="submit"
                         style="margin-right: 5%;"
-                >Submit</a
+                >Submit
+                </button
                 >
                 <a
                         id="clearButton"

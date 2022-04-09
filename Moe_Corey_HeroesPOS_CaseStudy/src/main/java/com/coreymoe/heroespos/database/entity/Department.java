@@ -19,17 +19,16 @@ public class Department {
             strategy = GenerationType.IDENTITY
     )
     private Integer id;
+
     @Column(
             nullable = false
     )
     private String name;
-    @Column(
-            columnDefinition = "DATETIME DEFAULT current_timestamp()"
-    )
+
+    @Temporal(TemporalType.TIMESTAMP)
     private Date created;
-    @Column(
-            columnDefinition = "DATETIME DEFAULT current_timestamp()"
-    )
+
+    @Temporal(TemporalType.TIMESTAMP)
     private Date updated;
 
 }

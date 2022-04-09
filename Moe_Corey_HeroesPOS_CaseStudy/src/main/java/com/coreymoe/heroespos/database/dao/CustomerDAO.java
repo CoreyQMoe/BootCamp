@@ -20,5 +20,5 @@ public interface CustomerDAO extends JpaRepository<Customer, Long> {
 
     Customer findById(@Param("id") Integer id);
 
-    List<Customer> findCustomerByActive(@Param("active") Boolean active);
+    List<Customer> findByActive(@Param("active") Boolean active);
 }

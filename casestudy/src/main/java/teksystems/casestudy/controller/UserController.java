@@ -2,7 +2,6 @@ package teksystems.casestudy.controller;
 
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
-import org.apache.coyote.Request;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
@@ -17,7 +16,6 @@ import teksystems.casestudy.service.UserService;
 
 import javax.validation.Valid;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 @Slf4j
@@ -70,7 +68,7 @@ public class UserController {
         ModelAndView response = new ModelAndView();
 
         log.info(form.toString());
-int i = 10/0;
+
         if (bindingResult.hasErrors()) {
             List<String> errors = new ArrayList<>();
 

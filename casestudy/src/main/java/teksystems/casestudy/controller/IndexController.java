@@ -28,7 +28,6 @@ public class IndexController {
             log.info(user.toString());
 
         }
-        System.out.println("1");
         response.setViewName("index");
 
         return response;

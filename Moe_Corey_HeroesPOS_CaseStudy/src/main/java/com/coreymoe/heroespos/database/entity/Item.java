@@ -13,43 +13,49 @@ import java.util.Date;
 @Entity
 @Table(name = "items")
 public class Item {
+
     @Id
     @GeneratedValue(
             strategy = GenerationType.IDENTITY
     )
     private Integer id;
+
     @Column(
             nullable = false,
             unique = true
     )
     private String name;
+
     @Column(
             nullable = false,
             unique = true
     )
     private String description;
+
     @Column(
             nullable = false
     )
     private Double price;
+
     @Column(
             nullable = false
     )
     private Double cost;
+
     @OneToOne
     private Department department;
+
     @Column(
-            columnDefinition = "BOOLEAN DEFAULT TRUE"
+            columnDefinition = "Integer DEFAULT 1"
     )
-    private Boolean active;
+    private Integer active;
+
     @ManyToOne
     private Vendor vendor;
-    @Column(
-            columnDefinition = "DATETIME DEFAULT current_timestamp()"
-    )
+
+    @Temporal(TemporalType.TIMESTAMP)
     private Date created;
-    @Column(
-            columnDefinition = "DATETIME DEFAULT current_timestamp()"
-    )
+
+    @Temporal(TemporalType.TIMESTAMP)
     private Date updated;
 }

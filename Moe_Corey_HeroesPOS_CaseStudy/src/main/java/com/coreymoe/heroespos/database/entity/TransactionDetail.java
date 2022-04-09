@@ -18,21 +18,16 @@ public class TransactionDetail {
             strategy = GenerationType.IDENTITY
     )
     private Integer id;
+
     @ManyToOne
     private Item item;
+
     @Column(
             nullable = false
     )
     private Integer quantity;
+
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "transaction_id", nullable = false)
     private Transaction transaction;
-    @Column(
-            columnDefinition = "DATETIME DEFAULT current_timestamp()"
-    )
-    private Date created;
-    @Column(
-            columnDefinition = "DATETIME DEFAULT current_timestamp()"
-    )
-    private Date updated;
 }

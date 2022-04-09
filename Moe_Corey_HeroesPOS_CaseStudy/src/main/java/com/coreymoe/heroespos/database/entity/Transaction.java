@@ -6,6 +6,7 @@ import javax.persistence.*;
 import java.util.Date;
 import java.util.List;
 
+
 @Getter
 @Setter
 @ToString
@@ -14,23 +15,27 @@ import java.util.List;
 @Entity
 @Table(name = "transactions")
 public class Transaction {
+
     @Id
     @GeneratedValue(
             strategy = GenerationType.IDENTITY
     )
-    private int iD;
+    private int id;
+
     @ManyToOne
     private Customer customer;
+
     @ManyToOne
     private Employee employee;
+
+    private String payment;
+
     @OneToMany(mappedBy = "transaction", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private List<TransactionDetail> details;
-    @Column(
-            columnDefinition = "DATETIME DEFAULT current_timestamp()"
-    )
+
+    @Temporal(TemporalType.TIMESTAMP)
     private Date created;
-    @Column(
-            columnDefinition = "DATETIME DEFAULT current_timestamp()"
-    )
+
+    @Temporal(TemporalType.TIMESTAMP)
     private Date updated;
 }

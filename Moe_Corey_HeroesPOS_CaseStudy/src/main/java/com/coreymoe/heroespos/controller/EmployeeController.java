@@ -1,7 +1,6 @@
 package com.coreymoe.heroespos.controller;
 
 import com.coreymoe.heroespos.database.dao.EmployeeDAO;
-import com.coreymoe.heroespos.database.entity.Customer;
 import com.coreymoe.heroespos.database.entity.Employee;
 import com.coreymoe.heroespos.formbean.RegisterFormBean;
 import lombok.extern.slf4j.Slf4j;
@@ -16,21 +15,22 @@ import org.springframework.web.servlet.ModelAndView;
 
 import javax.validation.Valid;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 @Slf4j
 @Controller
-public class UserController {
+public class EmployeeController {
 
     @Autowired
     private EmployeeDAO employeeDAO;
 
     //Initialize the page with a form
-    @RequestMapping(value = "/employee/registrationPage", method = RequestMethod.GET)
-    public ModelAndView register() throws Exception {
+    @RequestMapping(value = "/employee/register", method = RequestMethod.GET)
+    public ModelAndView create() throws Exception {
         ModelAndView response = new ModelAndView();
 
-        response.setViewName("employee/registrationPage");
+        response.setViewName("employee/register");
 
         RegisterFormBean form = new RegisterFormBean();
 
@@ -39,10 +39,9 @@ public class UserController {
         return response;
     }
 
-    @RequestMapping(value = "employee/registerSubmit", method = {RequestMethod.POST})
+    @RequestMapping(value = "employee/registerSubmit", method = {RequestMethod.GET, RequestMethod.POST})
     public ModelAndView registerSubmit(@Valid RegisterFormBean form, BindingResult bindingResult) throws Exception {
         ModelAndView response = new ModelAndView();
-
         if(bindingResult.hasErrors()) {
             List<String> errors = new ArrayList<>();
 
@@ -53,21 +52,32 @@ public class UserController {
             response.addObject("form", form);
             response.addObject("bindingResult", bindingResult);
 
-            response.setViewName("employee/registrationPage");
+            response.setViewName("employee/register");
             return response;
         }
-
-        Employee employee = employeeDAO.findById((Long)form.getId());
-
-        if(customer == null) {
-            customer = new Customer();
+        Employee employee = employeeDAO.findEmployeeById(form.getId());
+        
+        if(employee == null) {
+            employee = new Employee();
         }
 
-        customer.setFirstName(form.getFirstName());
-        customer.setLastName(form.getLastName());
-        customer.setP
-        customer.setAddress1(form.getAddress1());
-        customer.setAddress2(form.getAddress2());
-        customer.set
+        employee.setFirstName(form.getFirstName());
+        employee.setLastName(form.getLastName());
+        employee.setPassword(form.getPassword());
+        employee.setEmail(form.getEmail());
+        employee.setPhoneNumber(form.getPhoneNumber());
+        employee.setAddress1(form.getAddress1());
+        employee.setAddress2(form.getAddress2());
+        employee.setCity(form.getCity());
+        employee.setState(form.getState());
+        employee.setZipCode(form.getZipCode());
+        employee.setReportsTo(employeeDAO.findEmployeeById(form.getReportsTo()));
+        employee.setActive(1);
+        employee.setCreated(new Date());
+        employee.setUpdated(new Date());
+
+        employeeDAO.save(employee);
+        response.setViewName("employee/loginPage");
+        return response;
     }
 }
