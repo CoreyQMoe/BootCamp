@@ -1,8 +1,6 @@
 package com.coreymoe.heroespos.database.dao;
 
-import com.coreymoe.heroespos.database.entity.Department;
 import com.coreymoe.heroespos.database.entity.Item;
-import com.coreymoe.heroespos.database.entity.Vendor;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
@@ -20,11 +18,5 @@ public interface ItemDAO  extends JpaRepository<Item, Long> {
 
     List<Item> findByPrice(@Param("price") Double price);
 
-    List<Item> findByCost(@Param("cost") Double cost);
-
-    List<Item> findByActive(@Param("active") Boolean active);
-
-    List<Item> findByDepartment(@Param("department") Department department);
-
-    List<Item> findByVendor(@Param("vendor") Vendor vendor);
+    List<Item> findByActive(@Param("active") Integer active);
 }

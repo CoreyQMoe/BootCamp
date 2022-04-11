@@ -5,6 +5,8 @@ import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
 
+import java.util.List;
+
 @Getter
 @Setter
 @ToString
@@ -27,8 +29,6 @@ public class RegisterFormBean {
 
     private String address1;
 
-    private String address2;
-
     private String city;
 
     private String state;
@@ -37,4 +37,7 @@ public class RegisterFormBean {
 
     private Integer reportsTo;
 
+    private List<Integer> ids;
+
+    private List<String> fullNames;
 }

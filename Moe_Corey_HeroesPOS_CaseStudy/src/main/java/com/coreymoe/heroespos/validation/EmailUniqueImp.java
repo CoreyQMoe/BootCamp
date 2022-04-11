@@ -1,7 +1,7 @@
 package com.coreymoe.heroespos.validation;
 
-import com.coreymoe.heroespos.database.dao.EmployeeDAO;
-import com.coreymoe.heroespos.database.entity.Employee;
+import com.coreymoe.heroespos.database.dao.UserDAO;
+import com.coreymoe.heroespos.database.entity.User;
 import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -15,15 +15,15 @@ public class EmailUniqueImp implements ConstraintValidator<EmailUnique, String> 
     public static final Logger LOG = LoggerFactory.getLogger(EmailUniqueImp.class);
 
     @Autowired
-    private EmployeeDAO employeeDAO;
+    private UserDAO userDAO;
 
     @Override
     public boolean isValid(String value, ConstraintValidatorContext context) {
         if(StringUtils.isBlank(value)) {
             return true;
         }
-        Employee employee = employeeDAO.findByEmail(value);
-        return (employee == null);
+        User user = userDAO.findByEmail(value);
+        return (user == null);
     }
 
     @Override

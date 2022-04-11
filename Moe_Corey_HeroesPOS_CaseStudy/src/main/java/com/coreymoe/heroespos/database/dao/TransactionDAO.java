@@ -1,7 +1,6 @@
 package com.coreymoe.heroespos.database.dao;
 
-import com.coreymoe.heroespos.database.entity.Customer;
-import com.coreymoe.heroespos.database.entity.Employee;
+import com.coreymoe.heroespos.database.entity.User;
 import com.coreymoe.heroespos.database.entity.Transaction;
 import com.coreymoe.heroespos.database.entity.TransactionDetail;
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -17,9 +16,7 @@ public interface TransactionDAO  extends JpaRepository<Transaction, Long> {
 
     Transaction findById(@Param("id") Integer id);
 
-    List<Transaction> findByCustomer(@Param("customer") Customer customer);
-
-    List<Transaction> findByEmployee(@Param("employee") Employee employee);
+    List<Transaction> findByUser(@Param("user") User user);
 
     List<Transaction> findByCreated(@Param("created") Date created);
 

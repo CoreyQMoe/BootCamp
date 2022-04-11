@@ -38,20 +38,9 @@ public class Item {
     private Double price;
 
     @Column(
-            nullable = false
-    )
-    private Double cost;
-
-    @OneToOne
-    private Department department;
-
-    @Column(
             columnDefinition = "Integer DEFAULT 1"
     )
     private Integer active;
-
-    @ManyToOne
-    private Vendor vendor;
 
     @Temporal(TemporalType.TIMESTAMP)
     private Date created;

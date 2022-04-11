@@ -11,14 +11,14 @@ import java.util.Date;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-@Table(name = "customers")
-public class Customer {
+@Table(name = "users")
+public class User {
 
     @Id
     @GeneratedValue(
             strategy = GenerationType.IDENTITY
     )
-    private int id;
+    private Integer id;
 
     @Column(
             name = "first_name",
@@ -38,48 +38,29 @@ public class Customer {
             nullable = false,
             length = 30
     )
-    private String address1;
-
-    @Column(
-            nullable = false,
-            length = 30
-    )
-    private String address2;
-
-    @Column(
-            nullable = false,
-            length = 30
-    )
-    private String city;
-
-    @Column(
-            nullable = false,
-            length = 30
-    )
-    private String state;
-
-    @Column(
-            name = "zip_code",
-            nullable = false
-    )
-    private Integer zipCode;
-
-    @Column(
-            name = "phone_number",
-            nullable = false
-    )
-    private Integer phoneNumber;
-
-    @Column(
-            nullable = false,
-            length = 50
-    )
     private String email;
 
-    @Column(
-            columnDefinition = "Integer DEFAULT 1"
-    )
+    @Column(name = "phone_number",
+            nullable = false)
+    private Integer phoneNumber;
+
+    @Column(length = 30)
+    private String address1;
+
+    @Column(length = 50)
+    private String city;
+
+    @Column(length = 15)
+    private String state;
+
+    @Column(name = "zip_code", length = 5)
+    private Integer zipCode;
+
+    @Column(name="active", columnDefinition = "BIT")
     private Integer active;
+
+    @Column(length = 20)
+    private String password;
 
     @Temporal(TemporalType.TIMESTAMP)
     private Date created;

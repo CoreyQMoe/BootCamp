@@ -1,5 +1,3 @@
-<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -14,7 +12,7 @@
     />
     <script type="text/javascript" src="../../pub/js/loginPage.js" defer></script>
     <script type="text/javascript" src="../../pub/js/registrationPage.js" defer></script>
-    <link href="../../pub/css/global.css" rel="stylesheet" type="text/css"/>
+    <link rel="stylesheet" type="text/css" href="../../pub/css/global.css"/>
     <title>HeroesPOS</title>
 </head>
 <body>

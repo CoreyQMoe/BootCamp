@@ -1,18 +1,12 @@
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
-
-<jsp:include page="../include/header.jsp"/>
-
 <div class="mainContent">
     <div class="innerContent">
         <h1 class="pageLabel">Register for</h1>
         <h1 id="logo">Heroes</h1>
-        <form action="/employee/registerSubmit" method="get" style="padding-bottom: 4%" id="registrationForm"
-              name="registrationForm">
+        <form action="" style="padding-bottom: 4%" id="registrationForm" name="registrationForm">
             <div class="outerRegDiv">
                 <div class="innerRegDiv">
                     <div>
-                        <label for="firstName">Enter First Name:</label>
+                        <label for="firstNameError">Enter First Name:</label>
                     </div>
                     <div>
                         <input type="text" id="firstName" name="firstName" placeholder="Enter First Name"/>
@@ -58,29 +52,14 @@
                     </div>
                 </div>
             </div>
-            <div class="outerRegDiv">
-                <div class="innerRegDiv">
-                    <div>
-                        <label for="email">Enter Email:</label>
-                    </div>
-                    <div>
-                        <input type="email" id="email" name="email" placeholder="Enter Email"/>
-                        <p id="emailError" class="errorMessage">
-                            Email cannot be blank
-                        </p>
-                    </div>
-                </div>
-                <div class="innerRegDiv">
-                    <div>
-                        <label for="phoneNumber">Enter Phone Number:</label>
-                    </div>
-                    <div>
-                        <input type="tel" id="phoneNumber" name="phoneNumber" placeholder="Enter Phone Number"/>
-                        <p id="phoneError" class="errorMessage">
-                            Phone number cannot be blank
-                        </p>
-                    </div>
-                </div>
+            <div>
+                <label for="email">Enter Email:</label>
+            </div>
+            <div>
+                <input type="email" id="email" name="email" placeholder="Enter Email"/>
+                <p id="emailError" class="errorMessage">
+                    Email cannot be blank
+                </p>
             </div>
             <div class="outerRegDiv">
                 <div class="innerRegDiv">
@@ -94,19 +73,10 @@
                         </p>
                     </div>
                 </div>
+
                 <div class="innerRegDiv">
                     <div>
-                        <label for="address2">Enter Address:</label>
-                    </div>
-                    <div>
-                        <input type="text" id="address2" name="address2" placeholder="Enter Address 2"/>
-                    </div>
-                </div>
-            </div>
-            <div class="outerRegDiv">
-                <div class="innerRegDiv">
-                    <div>
-                        <label for="city">Enter City:</label>
+                        <label for="City">Enter City:</label>
                     </div>
                     <div>
                         <input type="text" id="city" name="city" placeholder="Enter City"/>
@@ -115,9 +85,11 @@
                         </p>
                     </div>
                 </div>
+            </div>
+            <div class="outerRegDiv">
                 <div class="innerRegDiv" style="margin-left: 5%;">
                     <div>
-                        <label for="state">Select State:</label>
+                        <label for="City">Select State:</label>
                     </div>
                     <div>
                         <select name="state" id="state">
@@ -179,26 +151,17 @@
                         </p>
                     </div>
                 </div>
-            </div>
-            <div>
-                <label for="zipCode">Enter Zip Code:</label>
-            </div>
-            <div>
-                <input type="number" id="zipCode" name="zipCode" placeholder="Enter Zip Code"/>
-                <p id="zipError" class="errorMessage">
-                    Zip code cannot be blank
-                </p>
-            </div>
-            <div>
-                <label for="reportsTo">Who Do You Report To:</label>
-            </div>
-            <div>
-                <select name="reportsTo" id="reportsTo">
-                    <option value="0" selected disabled hidden>Select Your Superior</option>
-                    <option value="1">Fill me from the DATABASE</option>
-                    <option value="2">Option</option>
-                </select>
-                <p>You must select your superior</p>
+                <div class="innerRegDiv">
+                    <div>
+                        <label for="zipCode">Enter Zip Code:</label>
+                    </div>
+                    <div>
+                        <input type="number" id="zipCode" name="zipCode" placeholder="Enter Zip Code"/>
+                        <p id="zipError" class="errorMessage">
+                            Zip code cannot be blank
+                        </p>
+                    </div>
+                </div>
             </div>
             <div>
                 <button
@@ -217,10 +180,6 @@
                 >Clear</a
                 >
             </div>
-
         </form>
     </div>
 </div>
-
-
-<jsp:include page="../include/footer.jsp"/>

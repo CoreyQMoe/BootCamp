@@ -23,10 +23,7 @@ public class Transaction {
     private int id;
 
     @ManyToOne
-    private Customer customer;
-
-    @ManyToOne
-    private Employee employee;
+    private User user;
 
     private String payment;
 
