@@ -10,12 +10,12 @@
     <h1>Edit</h1>
 </c:if>
 
-<form action="/user/registerSubmit" method="get">
+<form action="/user/registerSubmit" method="GET">
     <input type="hidden" name="id" value="${form.id}" )>
     Email<input type="email" name="email" id="emailID" value="${form.email}">
 
     <c:forEach items='${bindingResult.getFieldErrors("email")}' var="error">
-        <div style="color: red;">${error.getDefaultMessage()}</div>
+        <div>${error.getDefaultMessage()}</div>
     </c:forEach>
     <br>
     First Name <input type="text" name="firstName" id="firstNameID" value="${form.firstName}">

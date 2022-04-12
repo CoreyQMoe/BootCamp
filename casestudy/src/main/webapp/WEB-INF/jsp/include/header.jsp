@@ -21,4 +21,5 @@
     <a href="/user/register">SignUp</a>
     <a href="/user/search">Search</a>
     <a href="/ajax">Ajax</a>
+    <a href="/login/logout">Logout</a>
     <hr>

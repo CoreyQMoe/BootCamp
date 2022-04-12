@@ -2,61 +2,64 @@
 @import url("https://fonts.googleapis.com/css2?family=Roboto+Serif:wght@500&display=swap");
 
 * {
-  margin: 0;
-  padding: 0;
-  font-family: "Roboto Serif", serif;
+    margin: 0;
+    padding: 0;
+    font-family: "Roboto Serif", serif;
 }
 
 body {
     background-image: url("../images/background2.webp");
     height:100%;
     background-position: top center;
-    background-repeat: no-repeat;
+    background-repeat: repeat-x;
     background-size: cover;
     overflow: auto;
-    
 }
 
 .mainContent {
-  margin: 5% auto 5% auto;
-  border: solid black;
-  background-color: rgb(39, 39, 39);
-  box-shadow: 15px 15px 10px rgba(255, 255, 1, 0.493);
-  width: min-content;
-  padding: 3%;
-  opacity: 0.8;
-  text-align: center;
+    margin: 5% auto 5% auto;
+    border: solid black;
+    background-color: rgb(39, 39, 39);
+    box-shadow: 15px 15px 10px #d4d210;
+    width: max-content;
+    padding: 3%;
+    opacity: 0.8;
+    text-align: center;
 }
 
 .innerContent {
-  display: block;
-  text-align: center;
-  width: max-content;
-  margin: auto;
+    display: block;
+    justify-content: center;
+    width: max-content;
+    margin: auto;
 }
 
 .errorMessage {
-  color: #af0000;
-  margin: 0;
-  font-size: smaller;
-  visibility: hidden;
+    color: #f70a04;
+    margin: 0;
+    font-size: smaller;
+    visibility: hidden;
 }
 
 #logo {
-  font-family: "Yellowtail", cursive;
-  color: #21db3e;
-  font-size: 48pt;
+    font-family: "Yellowtail", cursive;
+    color: #21db3e;
+    font-size: 48pt;
 }
 
 #newUserLink a, td a {
-  color: #af0000;
+    color: #f70a04;
 }
 
 .pageLabel {
     color: #21db3e;
 }
 
-#loginButton, #clearButton, #submitButton, #searchButton, #newButton, 
+label, p {
+    color: #d07103;
+}
+
+#loginButton, #clearButton, #submitButton, #searchButton, #newButton,
 #itemPageButton, #transactionPageButton, #userPageButton {
     margin-top: 5%;
     color: #000000;
@@ -75,39 +78,36 @@ body {
 
 .outerRegDiv {
     display: flex;
+    margin-bottom: 5%;
 }
 .innerRegDiv {
     margin: 0 1% 0 1%;
 }
 
-label, p {
-    color: d07103;
-}
-
 input::-webkit-outer-spin-button,
 input::-webkit-inner-spin-button {
-  -webkit-appearance: none;
-  margin: 0;
+    -webkit-appearance: none;
+    margin: 0;
 }
 
 .topButtons, #searchForm {
-  width: 425;
-  margin-top: 3%;
+    width: 425px;
+    margin-top: 3%;
 }
 
 .searchFilters {
-  margin-bottom: 5%;
+    margin-bottom: 5%;
 }
 
 .tableSearch {
-  width: 150px;
+    width: min-content;
 }
 
 .userTable, .itemTable {
-  text-align: center;
+    justify-content: center;
 }
 
- th, td, tr {
-  border: solid #2ebb03 !important;
-  color: #d07103;
+th, td, tr {
+    border: solid #2ebb03 !important;
+    color: #d07103;
 }

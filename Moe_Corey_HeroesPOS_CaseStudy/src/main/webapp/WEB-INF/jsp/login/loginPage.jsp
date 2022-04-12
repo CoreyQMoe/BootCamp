@@ -8,7 +8,7 @@
         <div class="innerContent">
             <h1 class="pageLabel">Login to</h1>
             <h1 id="logo">Heroes</h1>
-            <form action="" style="padding-bottom: 4%" name="loginForm">
+            <form action="/login/loginSubmit" style="padding-bottom: 4%" name="loginForm" method="POST">
                 <div>
                     <label for="username">Enter Email Address:</label>
                 </div>
@@ -22,23 +22,17 @@
                     <label for="password">Enter Password:</label>
                 </div>
                 <div>
-                    <input type="text" id="password" name="password" placeholder="Enter Password" />
+                    <input type="password" id="password" name="password" placeholder="Enter Password" />
                     <p id="passwordError" class="errorMessage">
                         Password cannot be blank
                     </p>
                 </div>
                 <div>
-                    <a
-                            href="#"
-                            id="loginButton"
-                            class="btn btn-outline-success"
-                            role="button"
-                    >Login</a
-                    >
+                    <button id="loginButton" class="btn btn-outline-success">Login</button>
                 </div>
             </form>
             <div id="newUserLink">
-                <a href="register.jsp">Register New User</a>
+                <a href="../user/register">Register New User</a>
             </div>
         </div>
     </div>

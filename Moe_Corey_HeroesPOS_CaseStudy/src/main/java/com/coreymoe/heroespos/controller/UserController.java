@@ -49,9 +49,10 @@ public class UserController {
         return response;
     }
 
-    @RequestMapping(value = "user/registerSubmit", method = {RequestMethod.GET, RequestMethod.POST})
+    @RequestMapping(value = "user/registerSubmit", method = {RequestMethod.POST})
     public ModelAndView registerSubmit(@Valid RegisterFormBean form, BindingResult bindingResult) throws Exception {
         ModelAndView response = new ModelAndView();
+
         if(bindingResult.hasErrors()) {
             List<String> errors = new ArrayList<>();
 
@@ -76,7 +77,7 @@ public class UserController {
         user.setPassword(form.getPassword());
         user.setEmail(form.getEmail());
         user.setPhoneNumber(form.getPhoneNumber());
-        user.setAddress1(form.getAddress1());
+        user.setAddress(form.getAddress());
         user.setCity(form.getCity());
         user.setState(form.getState());
         user.setZipCode(form.getZipCode());
@@ -85,7 +86,7 @@ public class UserController {
         user.setUpdated(new Date());
 
         userDAO.save(user);
-        response.setViewName("user/loginPage");
+        response.setViewName("redirect:/user/loginPage");
         return response;
     }
 

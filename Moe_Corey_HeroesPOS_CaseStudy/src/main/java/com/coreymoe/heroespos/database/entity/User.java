@@ -45,7 +45,7 @@ public class User {
     private Integer phoneNumber;
 
     @Column(length = 30)
-    private String address1;
+    private String address;
 
     @Column(length = 50)
     private String city;

@@ -10,9 +10,9 @@
             integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3"
             crossorigin="anonymous"
     />
-    <script type="text/javascript" src="../../pub/js/loginPage.js" defer></script>
-    <script type="text/javascript" src="../../pub/js/registrationPage.js" defer></script>
-    <link rel="stylesheet" type="text/css" href="../../pub/css/global.css"/>
+    <script type="text/javascript" src="../../../pub/js/loginPage.js" defer></script>
+    <script type="text/javascript" src="../../../pub/js/registrationPage.js" defer></script>
+    <link rel="stylesheet" type="text/css" href="../../../pub/css/global.css"/>
     <title>HeroesPOS</title>
 </head>
 <body>

@@ -1,18 +1,24 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+
+<jsp:include page="../include/header.jsp"/>
+
 <div class="mainContent">
     <div class="innerContent">
         <h1 class="pageLabel">Register for</h1>
-        <h1 id="logo">Heroes</h1>
-        <form action="" style="padding-bottom: 4%" id="registrationForm" name="registrationForm">
+        <h1 id="logo">HeroesPOS</h1>
+        <form action="/user/registerSubmit" method="post" style="padding-bottom: 4%" id="registrationForm"
+              name="registrationForm">
             <div class="outerRegDiv">
                 <div class="innerRegDiv">
                     <div>
-                        <label for="firstNameError">Enter First Name:</label>
+                        <label for="firstName">Enter First Name:</label>
                     </div>
                     <div>
                         <input type="text" id="firstName" name="firstName" placeholder="Enter First Name"/>
-                        <p id="firstNameError" class="errorMessage" name="firstNameError">
-                            First name cannot be blank
-                        </p>
+                        <c:forEach items='${bindingResult.getFieldErrors("firstName")}' var="error">
+                            <div style="color: #f70a04;">${error.getDefaultMessage()}</div>
+                        </c:forEach>
                     </div>
                 </div>
                 <div class="innerRegDiv">
@@ -21,9 +27,9 @@
                     </div>
                     <div>
                         <input type="text" id="lastName" name="lastName" placeholder="Enter Last Name"/>
-                        <p id="lastNameError" class="errorMessage" name="lastNameError">
-                            Last name cannot be blank
-                        </p>
+                        <c:forEach items='${bindingResult.getFieldErrors("lastName")}' var="error">
+                            <div style="color: #f70a04;">${error.getDefaultMessage()}</div>
+                        </c:forEach>
                     </div>
                 </div>
             </div>
@@ -34,9 +40,9 @@
                     </div>
                     <div>
                         <input type="password" id="password" name="password" placeholder="Enter Password"/>
-                        <p id="passwordError" class="errorMessage">
-                            Password cannot be blank
-                        </p>
+                        <c:forEach items='${bindingResult.getFieldErrors("password")}' var="error">
+                            <div style="color: #f70a04;">${error.getDefaultMessage()}</div>
+                        </c:forEach>
                     </div>
                 </div>
                 <div class="innerRegDiv">
@@ -46,50 +52,65 @@
                     <div>
                         <input type="password" id="confirmPassword" name="confirmPassword"
                                placeholder="Confirm Password"/>
-                        <p id="confirmPasswordError" class="errorMessage">
-                            Password cannot be blank
-                        </p>
+                        <c:forEach items='${bindingResult.getFieldErrors("confirmPassword")}' var="error">
+                            <div style="color: #f70a04;">${error.getDefaultMessage()}</div>
+                        </c:forEach>
                     </div>
                 </div>
-            </div>
-            <div>
-                <label for="email">Enter Email:</label>
-            </div>
-            <div>
-                <input type="email" id="email" name="email" placeholder="Enter Email"/>
-                <p id="emailError" class="errorMessage">
-                    Email cannot be blank
-                </p>
             </div>
             <div class="outerRegDiv">
                 <div class="innerRegDiv">
                     <div>
-                        <label for="address1">Enter Address:</label>
+                        <label for="phoneNumber">Enter Phone Number:</label>
                     </div>
                     <div>
-                        <input type="text" id="address1" name="address1" placeholder="Enter Address 1"/>
-                        <p id="address1Error" class="errorMessage">
-                            Adresss cannot be blank
-                        </p>
+                        <input type="tel" id="phoneNumber" name="phoneNumber" placeholder="Enter Phone Number"/>
+                        <c:forEach items='${bindingResult.getFieldErrors("phoneNumber")}' var="error">
+                            <div style="color: #f70a04;">${error.getDefaultMessage()}</div>
+                        </c:forEach>
+                    </div>
+                </div>
+                <div class="innerRegDiv">
+                    <div>
+                        <label for="email">Enter Email:</label>
+                    </div>
+                    <div>
+                        <input type="email" id="email" name="email" placeholder="Enter Email"/>
+                        <c:forEach items='${bindingResult.getFieldErrors("email")}' var="error">
+                            <div style="color: #f70a04;">${error.getDefaultMessage()}</div>
+                        </c:forEach>
+                    </div>
+                </div>
+            </div>
+            <div class="outerRegDiv">
+                <div class="innerRegDiv">
+                    <div>
+                        <label for="address">Enter Address:</label>
+                    </div>
+                    <div>
+                        <input type="text" id="address" name="address" placeholder="Enter Address"/>
+                        <c:forEach items='${bindingResult.getFieldErrors("address")}' var="error">
+                            <div style="color: #f70a04;">${error.getDefaultMessage()}</div>
+                        </c:forEach>
                     </div>
                 </div>
 
                 <div class="innerRegDiv">
                     <div>
-                        <label for="City">Enter City:</label>
+                        <label for="city">Enter City:</label>
                     </div>
                     <div>
                         <input type="text" id="city" name="city" placeholder="Enter City"/>
-                        <p id="cityError" class="errorMessage">
-                            City cannot be blank
-                        </p>
+                        <c:forEach items='${bindingResult.getFieldErrors("city")}' var="error">
+                            <div style="color: #f70a04;">${error.getDefaultMessage()}</div>
+                        </c:forEach>
                     </div>
                 </div>
             </div>
             <div class="outerRegDiv">
                 <div class="innerRegDiv" style="margin-left: 5%;">
                     <div>
-                        <label for="City">Select State:</label>
+                        <label for="state">Select State:</label>
                     </div>
                     <div>
                         <select name="state" id="state">
@@ -146,9 +167,9 @@
                             <option value="WI">Wisconsin</option>
                             <option value="WY">Wyoming</option>
                         </select>
-                        <p id="stateError" class="errorMessage">
-                            Please select a state
-                        </p>
+                        <c:forEach items='${bindingResult.getFieldErrors("state")}' var="error">
+                            <div style="color: #f70a04;">${error.getDefaultMessage()}</div>
+                        </c:forEach>
                     </div>
                 </div>
                 <div class="innerRegDiv">
@@ -157,9 +178,9 @@
                     </div>
                     <div>
                         <input type="number" id="zipCode" name="zipCode" placeholder="Enter Zip Code"/>
-                        <p id="zipError" class="errorMessage">
-                            Zip code cannot be blank
-                        </p>
+                        <c:forEach items='${bindingResult.getFieldErrors("zipCode")}' var="error">
+                            <div style="color: #f70a04;">${error.getDefaultMessage()}</div>
+                        </c:forEach>
                     </div>
                 </div>
             </div>
@@ -170,16 +191,16 @@
                         type="submit"
                         style="margin-right: 5%;"
                 >Submit
-                </button
-                >
+                </button>
                 <a
                         id="clearButton"
                         class="btn btn-outline-success"
                         role="button"
                         style="margin-left: 5%;"
-                >Clear</a
-                >
+                >Clear</a>
             </div>
         </form>
     </div>
 </div>
+
+<jsp:include page="../include/footer.jsp"/>

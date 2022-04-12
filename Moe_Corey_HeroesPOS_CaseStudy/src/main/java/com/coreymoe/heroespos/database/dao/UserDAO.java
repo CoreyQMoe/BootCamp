@@ -14,17 +14,19 @@ public interface UserDAO extends JpaRepository<User, Long> {
 
     User findUserById(@Param("id") Integer id);
 
-    List<User> findByEmailIgnoreCaseContaining(@Param("email") String email);
-
-    List<User> findByFirstNameAndLastNameIgnoreCaseContaining(@Param("firstName") String firstName, @Param("lastName") String lastName);
+    List<User> findUserByIdContaining(@Param("id") Integer id);
 
     List<User> findByFirstNameIgnoreCaseContaining(@Param("firstName") String firstName);
 
     List<User> findByLastNameIgnoreCaseContaining(@Param("lastName") String latName);
 
-    List<User> findByActive(@Param("active") Integer active);
+    User findByEmail(@Param("email") String email);
+
+    List<User> findByEmailIgnoreCaseContaining(@Param("email") String email);
 
     List<User> findByPhoneNumberContaining(@Param("phoneNumber")Integer phoneNumber);
+
+    List<User> findByActive(@Param("active") Integer active);
 
     List<User> findByCreatedContaining(@Param("created") Date created);
 
@@ -36,6 +38,4 @@ public interface UserDAO extends JpaRepository<User, Long> {
 
     @Query(value = "SELECT * FROM Users", nativeQuery = true)
     List<User> findAllUsers();
-
-    User findByEmail(@Param("email") String email);
 }
