@@ -9,19 +9,16 @@ import java.util.Date;
 @Getter
 @Setter
 @ToString
-public class UserSearchBean {
-
+public class TransactionSearchBean {
     private Integer id;
 
-    private String firstName;
+    private Integer customerId;
 
-    private String lastName;
+    private Integer employeeId;
 
-    private String email;
+    private Double total;
 
-    private Integer phoneNumber;
-
-    private Integer active;
+    private String payment;
 
     private Date created;
 }

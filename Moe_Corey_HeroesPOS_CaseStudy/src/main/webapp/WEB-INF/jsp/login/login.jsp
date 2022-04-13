@@ -7,7 +7,7 @@
     <div class="mainContent">
         <div class="innerContent">
             <h1 class="pageLabel">Login to</h1>
-            <h1 id="logo">Heroes</h1>
+            <h1 id="logo">HeroesPOS</h1>
             <form action="/login/loginSubmit" style="padding-bottom: 4%" name="loginForm" method="POST">
                 <div>
                     <label for="username">Enter Email Address:</label>
@@ -28,11 +28,11 @@
                     </p>
                 </div>
                 <div>
-                    <button id="loginButton" class="btn btn-outline-success">Login</button>
+                    <button type="submit" id="loginButton" class="btn btn-outline-success">Login</button>
                 </div>
             </form>
-            <div id="newUserLink">
-                <a href="../user/register">Register New User</a>
+            <div>
+                <a href="../user/register">To Register Click Here</a>
             </div>
         </div>
     </div>

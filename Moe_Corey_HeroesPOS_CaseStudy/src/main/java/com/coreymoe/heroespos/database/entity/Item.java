@@ -15,31 +15,20 @@ import java.util.Date;
 public class Item {
 
     @Id
-    @GeneratedValue(
-            strategy = GenerationType.IDENTITY
-    )
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-    @Column(
-            nullable = false,
-            unique = true
-    )
+    @Column(nullable = false,
+            unique = true)
     private String name;
 
-    @Column(
-            nullable = false,
-            unique = true
-    )
+    @Column(nullable = false, unique = true)
     private String description;
 
-    @Column(
-            nullable = false
-    )
+    @Column(nullable = false)
     private Double price;
 
-    @Column(
-            columnDefinition = "Integer DEFAULT 1"
-    )
+    @Column(columnDefinition = "Integer DEFAULT 1")
     private Integer active;
 
     @Temporal(TemporalType.TIMESTAMP)

@@ -22,4 +22,7 @@ public interface TransactionDAO  extends JpaRepository<Transaction, Long> {
 
     @Query(value = "SELECT * FROM transactiondetails td LEFT JOIN FETCH transactions t WHERE td.transaction_id = t.id AND t.id = :id", nativeQuery = true)
     List<TransactionDetail> findDetailsByTransactionId(@Param("id") Integer id);
+
+    @Query(value = "SELECT * FROM Transactions", nativeQuery = true)
+    List<Transaction> findAllTransactions();
 }

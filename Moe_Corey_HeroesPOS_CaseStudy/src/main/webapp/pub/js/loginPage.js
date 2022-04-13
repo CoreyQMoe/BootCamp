@@ -11,7 +11,7 @@ function validateLogin(e) {
         count++;
     }
     if(count == 2) {
-        window.location.href = "tablePage.html"
+        window.location.href = "../searches/itemSearch"
         // Change this shit
     }
 }

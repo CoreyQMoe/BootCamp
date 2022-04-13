@@ -1,3 +1,5 @@
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -16,3 +18,22 @@
     <title>HeroesPOS</title>
 </head>
 <body>
+<%--<div style="background-color: white;">--%>
+<%--    <h1>wtf</h1>--%>
+<%--    <sec:authentication property="principal.username"/>--%>
+<%--</div>--%>
+<div class="container">
+<a href="/index">Index</a>|
+
+<a href="/ajax">Ajax</a>
+<sec:authorize access="hasAuthority('ADMIN')">
+    <a href="/user/search">Search</a>
+</sec:authorize>
+<sec:authorize access="!isAuthenticated()">
+    <a href="/user/register">SignUp</a>
+    <a href="/login/login">Login</a>
+</sec:authorize>
+<sec:authorize access="isAuthenticated()">
+    <a href="/login/logout">Logout</a>
+    <sec:authentication property="principal.username"/>
+</sec:authorize>

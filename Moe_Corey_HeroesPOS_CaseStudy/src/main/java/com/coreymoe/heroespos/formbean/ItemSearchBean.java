@@ -9,17 +9,15 @@ import java.util.Date;
 @Getter
 @Setter
 @ToString
-public class UserSearchBean {
+public class ItemSearchBean {
 
     private Integer id;
 
-    private String firstName;
+    private String name;
 
-    private String lastName;
+    private String description;
 
-    private String email;
-
-    private Integer phoneNumber;
+    private Integer price;
 
     private Integer active;
 

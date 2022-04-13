@@ -1,7 +1,24 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
 <jsp:include page="../include/header.jsp"/>
+<style>
+    body {
+        background-image: url("../../../pub/images/404.jpg");
+        height:100%;
+        background-position: top center;
+        background-repeat: no-repeat;
+        background-size: cover;
+        overflow: auto;
+    }
 
+    h1, h3, p {
+        color: #f70a04;
+        text-align: center;
+    }
+    h1, h3 {
+        text-shadow: 2px 2px white;
+    }
+</style>
 
 <h1 style="color: #760201;">Error Page</h1>
 

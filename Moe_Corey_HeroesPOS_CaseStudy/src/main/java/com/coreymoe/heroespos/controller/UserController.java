@@ -1,19 +1,20 @@
 package com.coreymoe.heroespos.controller;
 
 import com.coreymoe.heroespos.database.dao.UserDAO;
+import com.coreymoe.heroespos.database.dao.UserRolesDAO;
 import com.coreymoe.heroespos.database.entity.User;
+import com.coreymoe.heroespos.database.entity.UserRole;
 import com.coreymoe.heroespos.formbean.RegisterFormBean;
-import com.coreymoe.heroespos.formbean.UserSearchBean;
 import lombok.extern.slf4j.Slf4j;
-import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.FieldError;
 import org.springframework.validation.ObjectError;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.validation.Valid;
@@ -27,6 +28,12 @@ public class UserController {
 
     @Autowired
     private UserDAO userDAO;
+
+    @Autowired
+    private PasswordEncoder passwordEncoder;
+
+    @Autowired
+    private UserRolesDAO userRolesDAO;
 
     //Initialize the page with a form
     @RequestMapping(value = "/user/register", method = RequestMethod.GET)
@@ -54,7 +61,6 @@ public class UserController {
         ModelAndView response = new ModelAndView();
 
         if(bindingResult.hasErrors()) {
-            List<String> errors = new ArrayList<>();
 
             for(ObjectError error : bindingResult.getAllErrors()) {
                 log.info(((FieldError)error).getField() + " " + error.getDefaultMessage());
@@ -74,7 +80,7 @@ public class UserController {
 
         user.setFirstName(form.getFirstName());
         user.setLastName(form.getLastName());
-        user.setPassword(form.getPassword());
+        user.setPassword(passwordEncoder.encode(form.getPassword()));
         user.setEmail(form.getEmail());
         user.setPhoneNumber(form.getPhoneNumber());
         user.setAddress(form.getAddress());
@@ -86,14 +92,21 @@ public class UserController {
         user.setUpdated(new Date());
 
         userDAO.save(user);
-        response.setViewName("redirect:/user/loginPage");
+
+        UserRole userRole = new UserRole();
+        userRole.setUserId(user.getId());
+        userRole.setUserRole("USER");
+        userRolesDAO.save(userRole);
+
+        response.setViewName("redirect:/login/login");
         return response;
     }
 
-    @RequestMapping(value="/searches/userSearch", method= RequestMethod.GET )
-    public ModelAndView search(@RequestParam(value = "firstName", required = false) String firstName) throws Exception{
+    @PreAuthorize("hasAuthority('ADMIN')")
+    @RequestMapping(value="/search/userSearch", method= RequestMethod.GET )
+    public ModelAndView search() throws Exception{
         ModelAndView response = new ModelAndView();
-        response.setViewName("searches/userSearch");
+        response.setViewName("search/userSearch");
 
         List<User> users = userDAO.findAllUsers();
 

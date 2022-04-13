@@ -3,6 +3,8 @@ package teksystems.casestudy.controller;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.FieldError;
@@ -10,7 +12,9 @@ import org.springframework.validation.ObjectError;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 import teksystems.casestudy.database.dao.UserDAO;
+import teksystems.casestudy.database.dao.UserRolesDAO;
 import teksystems.casestudy.database.entity.User;
+import teksystems.casestudy.database.entity.UserRole;
 import teksystems.casestudy.formbean.RegisterFormBean;
 import teksystems.casestudy.service.UserService;
 
@@ -20,6 +24,7 @@ import java.util.List;
 
 @Slf4j
 @Controller
+@PreAuthorize("hasAnyAuthority('USER', 'ADMIN')")
 public class UserController {
 
     @Autowired
@@ -27,6 +32,12 @@ public class UserController {
 
     @Autowired
     private UserService userService;
+
+    @Autowired
+    private PasswordEncoder passwordEncoder;
+
+    @Autowired
+    private UserRolesDAO userRolesDAO;
 
     /**
      * this is the controller method for the entry point of the
@@ -104,10 +115,14 @@ public class UserController {
         user.setEmail(form.getEmail());
         user.setFirstName(form.getFirstName());
         user.setLastName(form.getLastName());
-        user.setPassword(form.getPassword());
-        //user.setCreateDate(new Date());
-
+        String password = passwordEncoder.encode(form.getPassword());
+        user.setPassword(password);
         userDao.save(user);
+
+        UserRole userRole = new UserRole();
+        userRole.setUserId(user.getId());
+        userRole.setUserRole("USER");
+        userRolesDAO.save(userRole);
 
         log.info(form.toString());
 
@@ -160,6 +175,7 @@ public class UserController {
     // add error checking to make sure that the incoming search value is not null and is not empty.
     // find apache string utils on maven central and add it to your pom file - very high recommendation
     // research the StringUtils.isEmpty function and use for error checking
+    @PreAuthorize("hasAuthority('ADMIN')")
     @RequestMapping(value="/user/search", method= RequestMethod.GET )
     public ModelAndView search(@RequestParam(value = "firstName", required = false) String firstName) {
         ModelAndView response = new ModelAndView();

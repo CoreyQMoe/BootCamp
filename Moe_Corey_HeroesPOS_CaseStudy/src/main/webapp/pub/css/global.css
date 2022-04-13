@@ -25,6 +25,7 @@ body {
     padding: 3%;
     opacity: 0.8;
     text-align: center;
+    justify-content: center;
 }
 
 .innerContent {
@@ -47,7 +48,7 @@ body {
     font-size: 48pt;
 }
 
-#newUserLink a, td a {
+a {
     color: #f70a04;
 }
 
@@ -91,7 +92,6 @@ input::-webkit-inner-spin-button {
 }
 
 .topButtons, #searchForm {
-    width: 425px;
     margin-top: 3%;
 }
 
@@ -105,9 +105,20 @@ input::-webkit-inner-spin-button {
 
 .userTable, .itemTable {
     justify-content: center;
+    width: max-content;
 }
 
 th, td, tr {
     border: solid #2ebb03 !important;
     color: #d07103;
+}
+
+#searchForm {
+    justify-content: center;
+    width: max-content;
+}
+
+table tr td input {
+    width: 100%;
+    margin: 0;
 }

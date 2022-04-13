@@ -1,7 +1,8 @@
-package teksystems.casestudy.controller;
+package com.coreymoe.heroespos.controller;
 
+import com.coreymoe.heroespos.database.dao.UserDAO;
+import com.coreymoe.heroespos.database.entity.User;
 import lombok.extern.slf4j.Slf4j;
-import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AnonymousAuthenticationToken;
 import org.springframework.security.core.Authentication;
@@ -10,8 +11,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
-import teksystems.casestudy.database.dao.UserDAO;
-import teksystems.casestudy.database.entity.User;
 
 import java.util.List;
 
@@ -21,7 +20,7 @@ public class IndexController {
 
 
     @Autowired
-    private UserDAO userDao;
+    private UserDAO userDAO;
 
     @RequestMapping(value = "/index", method = RequestMethod.GET)
     public ModelAndView index() throws Exception {
@@ -31,7 +30,7 @@ public class IndexController {
         // database to get the user object
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         String currentPrincipalName = authentication.getName();
-        User loggedInUser = userDao.findByEmail(currentPrincipalName);
+        User loggedInUser = userDAO.findByEmail(currentPrincipalName);
 
         if ( loggedInUser == null ) {
             log.debug("Not logged in");

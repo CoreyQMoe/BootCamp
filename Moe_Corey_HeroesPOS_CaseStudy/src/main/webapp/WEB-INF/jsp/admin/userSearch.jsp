@@ -1,12 +1,13 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 
 <jsp:include page="../include/header.jsp"/>
 
 <div class="mainContent">
     <div class="topButtons">
-        <a href="#" id="itemPageButton" class="btn btn-outline-success" role="button">Items</a>
-        <a href="#" id="transactionPageButton" class="btn btn-outline-success" role="button">Transactions</a>
+        <a href="../search/itemSearch" id="itemPageButton" class="btn btn-outline-success" role="button">Items</a>
+        <a href="transactionSearch" id="transactionPageButton" class="btn btn-outline-success" role="button">Transactions</a>
     </div>
     <div class="innerContent">
         <h1 class="pageLabel">Users</h1>
@@ -26,7 +27,7 @@
                     </tr>
                     <tr>
                         <td>
-                            <input class="tableSearch" type="text" id="idSearch"/>
+                            <input class="tableSearch" type="number" id="idSearch"/>
                         </td>
                         <td>
                             <input class="tableSearch" type="text" id="firstNameSearch"/>
@@ -35,16 +36,16 @@
                             <input class="tableSearch" type="text" id="lastNameSearch"/>
                         </td>
                         <td>
-                            <input class="tableSearch" type="text" id="emailSearch"/>
+                            <input class="tableSearch" type="email" id="emailSearch"/>
                         </td>
                         <td>
-                            <input class="tableSearch" type="text" id="phoneNumberSearch"/>
+                            <input class="tableSearch" type="tel" id="phoneNumberSearch"/>
                         </td>
                         <td>
-                            <input class="tableSearch" type="text" id="activeSearch"/>
+                            <input class="tableSearch" type="number" id="activeSearch" min="0" max="1"/>
                         </td>
                         <td>
-                            <input class="tableSearch" type="text" id="createdSearch"/>
+                            <input class="tableSearch" type="date" id="createdSearch"/>
                         </td>
                     </tr>
                     <c:forEach items="${users}" var="user">
