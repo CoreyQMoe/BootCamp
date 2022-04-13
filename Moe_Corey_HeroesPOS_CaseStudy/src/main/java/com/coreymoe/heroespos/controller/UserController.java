@@ -13,6 +13,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.FieldError;
 import org.springframework.validation.ObjectError;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
@@ -103,10 +105,10 @@ public class UserController {
     }
 
     @PreAuthorize("hasAuthority('ADMIN')")
-    @RequestMapping(value="/search/userSearch", method= RequestMethod.GET )
+    @RequestMapping(value="/admin/userSearch", method= RequestMethod.GET )
     public ModelAndView search() throws Exception{
         ModelAndView response = new ModelAndView();
-        response.setViewName("search/userSearch");
+        response.setViewName("admin/userSearch");
 
         List<User> users = userDAO.findAllUsers();
 
@@ -120,4 +122,34 @@ public class UserController {
 
         return response;
     }
+/**
+ * Work on editing users later
+ */
+//    @GetMapping("/user/edit/{userId}")
+//    //public ModelAndView editUser(@RequestParam("userId") Integer userId) throws Exception {
+//    public ModelAndView editUser(@PathVariable("userId") Integer userId) throws Exception {
+//        ModelAndView response = new ModelAndView();
+//        response.setViewName("user/register");
+//
+//        User user = userDAO.findUserById(userId);
+//
+//        RegisterFormBean form = new RegisterFormBean();
+//
+//        form.setId(user.getId());
+//        form.setEmail(user.getEmail());
+//        form.setFirstName(user.getFirstName());
+//        form.setLastName(user.getLastName());
+//        form.setPassword(PasswordEncoder. user.getPassword());
+//        form.setConfirmPassword(user.getPassword());
+//        form.setAddress(user.getAddress());
+//        form.setCity(user.getCity());
+//        form.setState(user.getState());
+//        form.setZipCode(user.getZipCode());
+//        form.setPhoneNumber(user.getPhoneNumber());
+//
+//        // in this case we are adding the RegisterFormBean to the model
+//        response.addObject("form", form);
+//
+//        return response;
+//    }
 }

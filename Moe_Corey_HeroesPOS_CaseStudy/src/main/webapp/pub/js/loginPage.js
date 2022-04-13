@@ -2,7 +2,7 @@ let submitLogin = document.getElementById("loginButton");
 submitLogin.addEventListener("click", validateLogin);
 
 function validateLogin(e) {
-    e.preventDefault();
+    // e.preventDefault();
     var count = 0;
     if(validateUsername()) {
         count++;
@@ -10,10 +10,9 @@ function validateLogin(e) {
     if(validatePassword()) {
         count++;
     }
-    if(count == 2) {
-        window.location.href = "../searches/itemSearch"
-        // Change this shit
-    }
+    // if(count == 2) {
+    //     window.location.href = "../search/itemSearch"
+    // }
 }
 
 function validateUsername() {

@@ -23,7 +23,7 @@
                         <th><label for="phoneNumberSearch">Phone Number</label></th>
                         <th><label for="activeSearch">Active</label></th>
                         <th><label for="createdSearch">Create Date</label></th>
-                        <th>Edit</th>
+<%--                        <th>Edit</th>--%>
                     </tr>
                     <tr>
                         <td>
@@ -57,7 +57,7 @@
                             <td>${user.phoneNumber}</td>
                             <td>${user.active}</td>
                             <td>${user.created}</td>
-                            <td><a href="">Edit</a></td>
+<%--                            <td><a href="../user/edit/${user.id}">Edit</a></td>--%>
                         </tr>
                     </c:forEach>
                 </table>

@@ -32,7 +32,7 @@ public class RegisterFormBean {
     @NotBlank(message = "Confirm Password is required")
     private String confirmPassword;
 
-    @EmailUnique(message = "Email exists.")
+    @EmailUnique(message = "Email exists")
     @NotBlank(message = "Email is required")
     @Pattern(regexp = "^[a-z0-9]+@[a-z]+\\.[a-z]{2,3}", message = "Email format invalid")
     private String email;

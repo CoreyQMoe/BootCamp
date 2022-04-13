@@ -12,28 +12,12 @@
             integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3"
             crossorigin="anonymous"
     />
-    <script type="text/javascript" src="../../../pub/js/loginPage.js" defer></script>
-    <script type="text/javascript" src="../../../pub/js/registrationPage.js" defer></script>
     <link rel="stylesheet" type="text/css" href="../../../pub/css/global.css"/>
     <title>HeroesPOS</title>
 </head>
 <body>
-<%--<div style="background-color: white;">--%>
-<%--    <h1>wtf</h1>--%>
-<%--    <sec:authentication property="principal.username"/>--%>
-<%--</div>--%>
-<div class="container">
-<a href="/index">Index</a>|
-
-<a href="/ajax">Ajax</a>
-<sec:authorize access="hasAuthority('ADMIN')">
-    <a href="/user/search">Search</a>
-</sec:authorize>
-<sec:authorize access="!isAuthenticated()">
-    <a href="/user/register">SignUp</a>
-    <a href="/login/login">Login</a>
-</sec:authorize>
-<sec:authorize access="isAuthenticated()">
-    <a href="/login/logout">Logout</a>
-    <sec:authentication property="principal.username"/>
-</sec:authorize>
+<div>
+    <sec:authorize access="isAuthenticated()">
+        <p style="color: white;"><sec:authentication property="principal.username"/></p>
+    </sec:authorize>
+</div>

@@ -20,10 +20,10 @@ public class TransactionController {
     @Autowired
     private TransactionDAO transactionDAO;
 
-    @RequestMapping(value="/searches/transactionSearch", method= RequestMethod.GET )
+    @RequestMapping(value="/admin/transactionSearch", method= RequestMethod.GET )
     public ModelAndView search() throws Exception{
         ModelAndView response = new ModelAndView();
-        response.setViewName("searches/transactionSearch");
+        response.setViewName("admin/transactionSearch");
 
         List<Transaction> transactions = transactionDAO.findAllTransactions();
 

@@ -19,18 +19,13 @@ public class ItemController {
     @Autowired
     private ItemDAO itemDAO;
 
-    @RequestMapping(value="/searches/itemSearch", method= RequestMethod.GET )
+    @RequestMapping(value="/search/itemSearch", method= RequestMethod.GET )
     public ModelAndView search() throws Exception{
         ModelAndView response = new ModelAndView();
-        response.setViewName("searches/itemSearch");
+        response.setViewName("search/itemSearch");
 
         List<Item> items = itemDAO.findAllItems();
 
-
-        // very basic example of error checking
-//        if (!StringUtils.isEmpty(firstName)) {
-//            employees = employeeDAO.findByFirstNameIgnoreCaseContaining(firstName);
-//        }
 
         response.addObject("items", items);
 

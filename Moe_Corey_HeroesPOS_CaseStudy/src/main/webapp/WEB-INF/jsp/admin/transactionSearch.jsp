@@ -21,6 +21,7 @@
                         <th><label for="totalSearch">Total</label></th>
                         <th><label for="paymentTypeSearch">Payment Type</label></th>
                         <th><label for="orderDateSearch">Order Date</label></th>
+<%--                        <th>Edit</th>--%>
                     </tr>
                     <tr>
                         <td>
@@ -50,7 +51,7 @@
                             <td>${transaction.total}</td>
                             <td>${transaction.payment}</td>
                             <td>${transaction.created}</td>
-                            <td><a href="">Edit</a></td>
+<%--                            <td><a href="">Edit</a></td>--%>
                         </tr>
                     </c:forEach>
                 </table>

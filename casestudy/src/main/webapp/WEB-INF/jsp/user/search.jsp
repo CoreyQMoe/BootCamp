@@ -2,27 +2,38 @@
 
 <jsp:include page="../include/header.jsp" />
 
+<h1>Search</h1>
 
-<%--<c:if test="${empty form.id}">--%>
-    <h1>Search</h1>
-<%--action defaults to the same page and method defaults to GET--%>
+<br>
 <form action="/user/search" method="GET">
-    <input type="text"  name="search" placeholder="Enter Search Criteria" value="${search}"/>
+    First Name : <input type="text" name="firstName" value="${firstName}">
     <button type="submit">Submit</button>
 </form>
 
+<br>
+
+<c:if test="${not empty firstName}">
+    <h5>Search Results Found ${usersModelKey.size()}</h5>
+    <br>
+</c:if>
+
+
 <table class="table">
-    <tr>
+    <tr scope="row">
         <th>Email</th>
         <th>First Name</th>
         <th>Last Name</th>
+        <th>Edit</th>
     </tr>
-<c:forEach items="${users}" var="user">
-    <tr scope="row">
-        <td>${user.email}</td>
-        <td>${user.firstName}</td>
-        <td>${user.email}<br></td>
-    </tr>
-</c:forEach>
+    <c:forEach items="${usersModelKey}" var="user">
+        <tr scope="row">
+            <td>${user.email}</td>
+            <td>${user.firstName}</td>
+            <td>${user.lastName}</td>
+            <td><a href="/user/edit/${user.id}">Edit</a></td>
+        </tr>
+    </c:forEach>
 </table>
+
+
 <jsp:include page="../include/footer.jsp" />

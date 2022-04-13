@@ -1,14 +1,17 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 
 <jsp:include page="../include/header.jsp"/>
 
 <div class="mainContent">
-    <div class="topButtons">
-        <a href="../admin/transactionSearch" id="transactionPageButton" class="btn btn-outline-success" role="button">Transactions</a>
-        <a href="../admin/userSearch" id="userPageButton" class="btn btn-outline-success" role="button">Users</a>
-    </div>
+    <sec:authorize access="hasAuthority('ADMIN')">
+        <div class="topButtons">
+            <a href="../admin/transactionSearch" id="transactionPageButton" class="btn btn-outline-success"
+               role="button">Transactions</a>
+            <a href="../admin/userSearch" id="userPageButton" class="btn btn-outline-success" role="button">Users</a>
+        </div>
+    </sec:authorize>
     <div class="innerContent">
         <h1 class="pageLabel">Items</h1>
         <h1 id="logo">HeroesPOS</h1>
@@ -48,6 +51,8 @@
                         <td>
                             <input class="tableSearch" type="date" id="createdSearch"/>
                         </td>
+                        <td></td>
+                        <td></td>
                     </tr>
                     <c:forEach items="${items}" var="item">
                         <tr>
@@ -58,7 +63,7 @@
                             <td>${item.active}</td>
                             <td>${item.created}</td>
                             <sec:authorize access="hasAuthority('ADMIN')">
-                                <td><a href="">Edit</a></td>
+                                <td><a href="/admin/itemEdit/${user.id}">Edit</a></td>
                             </sec:authorize>
                             <sec:authorize access="hasAuthority('USER')">
                                 <td><a href="">Add Item</a></td>

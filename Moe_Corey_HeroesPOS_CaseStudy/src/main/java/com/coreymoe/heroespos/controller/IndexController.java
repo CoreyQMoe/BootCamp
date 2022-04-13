@@ -22,7 +22,7 @@ public class IndexController {
     @Autowired
     private UserDAO userDAO;
 
-    @RequestMapping(value = "/index", method = RequestMethod.GET)
+    @RequestMapping(value = "/index/index", method = RequestMethod.GET)
     public ModelAndView index() throws Exception {
         ModelAndView response = new ModelAndView();
 
@@ -38,7 +38,7 @@ public class IndexController {
             log.debug("User logged in " + loggedInUser);
         }
 
-        response.setViewName("index");
+        response.setViewName("/index/index");
 
         return response;
     }

@@ -4,10 +4,10 @@ import lombok.*;
 
 import javax.persistence.*;
 import java.util.Date;
+import java.util.Set;
 
 @Getter
 @Setter
-@ToString
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
@@ -30,6 +30,9 @@ public class Item {
 
     @Column(columnDefinition = "Integer DEFAULT 1")
     private Integer active;
+
+    @OneToMany(mappedBy = "item", fetch = FetchType.LAZY)
+    private Set<TransactionDetail> transactionDetails;
 
     @Temporal(TemporalType.TIMESTAMP)
     private Date created;

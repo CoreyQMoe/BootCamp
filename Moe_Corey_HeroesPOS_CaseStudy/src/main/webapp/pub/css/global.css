@@ -22,7 +22,7 @@ body {
     background-color: rgb(39, 39, 39);
     box-shadow: 15px 15px 10px #d4d210;
     width: max-content;
-    padding: 3%;
+    padding: 2.75%;
     opacity: 0.8;
     text-align: center;
     justify-content: center;
@@ -32,14 +32,6 @@ body {
     display: block;
     justify-content: center;
     width: max-content;
-    margin: auto;
-}
-
-.errorMessage {
-    color: #f70a04;
-    margin: 0;
-    font-size: smaller;
-    visibility: hidden;
 }
 
 #logo {
@@ -116,9 +108,4 @@ th, td, tr {
 #searchForm {
     justify-content: center;
     width: max-content;
-}
-
-table tr td input {
-    width: 100%;
-    margin: 0;
 }

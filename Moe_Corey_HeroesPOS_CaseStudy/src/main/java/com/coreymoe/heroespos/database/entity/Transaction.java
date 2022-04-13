@@ -6,6 +6,7 @@ import lombok.*;
 import javax.persistence.*;
 import java.util.Date;
 import java.util.List;
+import java.util.Set;
 
 
 @Getter
@@ -30,7 +31,9 @@ public class Transaction {
 
     @OneToMany(mappedBy = "transaction", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     //@JsonManagedReference solves infinite looping
-    private List<TransactionDetail> details;
+    private Set<TransactionDetail> details;
+
+    private String status;
 
     @Temporal(TemporalType.TIMESTAMP)
     private Date created;

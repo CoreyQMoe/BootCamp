@@ -4,10 +4,10 @@ import lombok.*;
 
 import javax.persistence.*;
 import java.util.Date;
+import java.util.Set;
 
 @Getter
 @Setter
-@ToString
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
@@ -61,6 +61,9 @@ public class User {
 
     @Column(length = 20)
     private String password;
+
+    @OneToMany(mappedBy = "user", fetch = FetchType.LAZY)
+    private Set<Transaction> transactions;
 
     @Temporal(TemporalType.TIMESTAMP)
     private Date created;

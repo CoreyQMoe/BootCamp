@@ -20,24 +20,26 @@ import teksystems.casestudy.service.UserService;
 
 import javax.validation.Valid;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 @Slf4j
 @Controller
-@PreAuthorize("hasAnyAuthority('USER', 'ADMIN')")
+//@PreAuthorize("hasAuthority('USER')")
+@PreAuthorize("hasAnyAuthority('USER','ADMIN')")
 public class UserController {
 
     @Autowired
     private UserDAO userDao;
 
     @Autowired
+    private UserRolesDAO userRoleDao;
+
+    @Autowired
     private UserService userService;
 
     @Autowired
     private PasswordEncoder passwordEncoder;
-
-    @Autowired
-    private UserRolesDAO userRolesDAO;
 
     /**
      * this is the controller method for the entry point of the
@@ -81,18 +83,16 @@ public class UserController {
         log.info(form.toString());
 
         if (bindingResult.hasErrors()) {
-            List<String> errors = new ArrayList<>();
-
-            bindingResult.getFieldErrorCount("firstName");
 
             for (ObjectError error : bindingResult.getAllErrors()) {
-                //errors.put(((FieldError) error).getField(), error.getDefaultMessage());
                 log.info( ((FieldError)error).getField() + " " +  error.getDefaultMessage());
             }
 
-            // add the error list to the model
-            //response.addObject("errors", errors;
+            // add the form back to the model so we can fill up the input fields
+            // so the user can correct the input and does not have type it all again
             response.addObject("form", form);
+
+            // add the error list to the model
             response.addObject("bindingResult", bindingResult);
 
             // because there is 1 or more error we do not want to process the logic below
@@ -115,14 +115,19 @@ public class UserController {
         user.setEmail(form.getEmail());
         user.setFirstName(form.getFirstName());
         user.setLastName(form.getLastName());
+//        user.setCreateDate(new Date());
+
         String password = passwordEncoder.encode(form.getPassword());
         user.setPassword(password);
+
         userDao.save(user);
 
+        // create and save the user role object
         UserRole userRole = new UserRole();
         userRole.setUserId(user.getId());
         userRole.setUserRole("USER");
-        userRolesDAO.save(userRole);
+
+        userRoleDao.save(userRole);
 
         log.info(form.toString());
 
@@ -192,7 +197,7 @@ public class UserController {
         // the model is a map ( key value store )
         // any object of any kind can go into the model using this key value
         // in this case it is a list of Users
-        response.addObject("users", users);
+        response.addObject("usersModelKey", users);
         response.addObject("firstName", firstName);
 
         return response;
