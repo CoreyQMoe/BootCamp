@@ -2,8 +2,10 @@ package com.coreymoe.heroespos.database.entity;
 
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.*;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
+import java.time.LocalDate;
 import java.util.Date;
 import java.util.List;
 import java.util.Set;
@@ -35,9 +37,9 @@ public class Transaction {
 
     private String status;
 
-    @Temporal(TemporalType.TIMESTAMP)
-    private Date created;
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
+    private LocalDate created;
 
-    @Temporal(TemporalType.TIMESTAMP)
-    private Date updated;
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
+    private LocalDate updated;
 }

@@ -16,8 +16,16 @@
     <title>HeroesPOS</title>
 </head>
 <body>
-<div>
+<div style="margin: 1%">
     <sec:authorize access="isAuthenticated()">
-        <p style="color: white;"><sec:authentication property="principal.username"/></p>
+        <span class="headLink">Logged in as: <sec:authentication property="principal.username"/></span>
+        &nbsp; | &nbsp;<a class="headLink" href="/login/logout">Logout</a>
+        &nbsp; | &nbsp;<a class="headLink" href="../search/itemSearch">Items</a>
+        <sec:authorize access="hasAuthority('ADMIN')">
+            &nbsp; | &nbsp;<a class="headLink" href="../admin/transactionSearch">Transactions</a>
+            &nbsp; | &nbsp;<a class="headLink" href=../admin/userSearch>Users</a>
+        </sec:authorize>
+            &nbsp; | &nbsp;<a class="headLink" href="#">Cart</a>
+            &nbsp; | &nbsp;<a class="headLink" href="#">Profile</a>
     </sec:authorize>
 </div>

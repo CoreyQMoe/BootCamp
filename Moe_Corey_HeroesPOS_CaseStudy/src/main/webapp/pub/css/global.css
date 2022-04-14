@@ -16,6 +16,10 @@ body {
     overflow: auto;
 }
 
+.headLink {
+    color: #0007cc;
+}
+
 .mainContent {
     margin: 5% auto 5% auto;
     border: solid black;
@@ -83,12 +87,12 @@ input::-webkit-inner-spin-button {
     margin: 0;
 }
 
-.topButtons, #searchForm {
+#searchForm {
     margin-top: 3%;
 }
 
-.searchFilters {
-    margin-bottom: 5%;
+#searchCriteria {
+    margin-bottom: 3%;
 }
 
 .tableSearch {
@@ -100,12 +104,20 @@ input::-webkit-inner-spin-button {
     width: max-content;
 }
 
-th, td, tr {
-    border: solid #2ebb03 !important;
+tr, td, th{
+    border: 1px solid #2ebb03 !important;
     color: #d07103;
+}
+
+td, th {
+    padding: 5px;
 }
 
 #searchForm {
     justify-content: center;
     width: max-content;
+}
+
+input[type="radio"] {
+    margin-right: 10px;
 }

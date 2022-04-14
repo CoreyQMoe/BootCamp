@@ -5,10 +5,6 @@
 <jsp:include page="../include/header.jsp"/>
 
 <div class="mainContent">
-    <div class="topButtons">
-        <a href="../search/itemSearch" id="itemPageButton" class="btn btn-outline-success" role="button">Items</a>
-        <a href="transactionSearch" id="transactionPageButton" class="btn btn-outline-success" role="button">Transactions</a>
-    </div>
     <div class="innerContent">
         <h1 class="pageLabel">Users</h1>
         <h1 id="logo">HeroesPOS</h1>

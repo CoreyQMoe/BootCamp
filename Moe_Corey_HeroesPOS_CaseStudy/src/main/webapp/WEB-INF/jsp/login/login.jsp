@@ -12,19 +12,13 @@
                 <label for="username">Enter Email Address:</label>
             </div>
             <div>
-                <input type="text" id="username" name="username" placeholder="Enter Email Address"/>
-                <p id="usernameError" class="errorMessage" name="usernameError">
-                    Username cannot be blank
-                </p>
+                <input type="text" id="username" name="username" placeholder="Enter Email Address" style="margin-bottom: 5%;"/>
             </div>
             <div>
                 <label for="password">Enter Password:</label>
             </div>
             <div>
                 <input type="password" id="password" name="password" placeholder="Enter Password"/>
-                <p id="passwordError" class="errorMessage">
-                    Password cannot be blank
-                </p>
             </div>
             <div>
                 <button type="submit" id="loginButton" class="btn btn-outline-success">Login</button>

@@ -32,15 +32,35 @@ public class IndexController {
         String currentPrincipalName = authentication.getName();
         User loggedInUser = userDAO.findByEmail(currentPrincipalName);
 
-        if ( loggedInUser == null ) {
-            log.debug("Not logged in");
-        } else {
-            log.debug("User logged in " + loggedInUser);
-        }
+//        if ( loggedInUser == null ) {
+//            log.debug("Not logged in");
+//        } else {
+//            log.debug("User logged in " + loggedInUser);
+//        }
 
         response.setViewName("/index/index");
 
         return response;
     }
 
+    @RequestMapping(value = "/index/landing", method = RequestMethod.GET)
+    public ModelAndView landing() throws Exception {
+        ModelAndView response = new ModelAndView();
+
+        // this little block of code can grab the logged in user and look it up in the
+        // database to get the user object
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        String currentPrincipalName = authentication.getName();
+        User loggedInUser = userDAO.findByEmail(currentPrincipalName);
+
+//        if ( loggedInUser == null ) {
+//            log.debug("Not logged in");
+//        } else {
+//            log.debug("User logged in " + loggedInUser);
+//        }
+
+        response.setViewName("/index/landing");
+
+        return response;
+    }
 }

@@ -13,13 +13,12 @@ import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.FieldError;
 import org.springframework.validation.ObjectError;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.validation.Valid;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -90,8 +89,8 @@ public class UserController {
         user.setState(form.getState());
         user.setZipCode(form.getZipCode());
         user.setActive(1);
-        user.setCreated(new Date());
-        user.setUpdated(new Date());
+        user.setCreated(LocalDate.now());
+        user.setUpdated(LocalDate.now());
 
         userDAO.save(user);
 

@@ -1,8 +1,10 @@
 package com.coreymoe.heroespos.database.entity;
 
 import lombok.*;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
+import java.time.LocalDate;
 import java.util.Date;
 import java.util.Set;
 
@@ -65,9 +67,9 @@ public class User {
     @OneToMany(mappedBy = "user", fetch = FetchType.LAZY)
     private Set<Transaction> transactions;
 
-    @Temporal(TemporalType.TIMESTAMP)
-    private Date created;
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
+    private LocalDate created;
 
-    @Temporal(TemporalType.TIMESTAMP)
-    private Date updated;
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
+    private LocalDate updated;
 }
