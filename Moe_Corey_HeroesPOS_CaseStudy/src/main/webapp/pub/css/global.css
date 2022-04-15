@@ -56,9 +56,15 @@ label, p {
     color: #d07103;
 }
 
-#loginButton, #clearButton, #submitButton, #searchButton, #newButton,
+#loginButton, #clearButton, #submitButton, #newButton,
 #itemPageButton, #transactionPageButton, #userPageButton {
     margin-top: 5%;
+    color: #000000;
+    border-color: black;
+}
+
+#searchButton {
+    margin-left: 3%;
     color: #000000;
     border-color: black;
 }

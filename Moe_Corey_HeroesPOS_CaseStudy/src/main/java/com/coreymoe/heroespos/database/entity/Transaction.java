@@ -29,17 +29,12 @@ public class Transaction {
 
     private Double total;
 
-    private String payment;
+    private String status;
 
     @OneToMany(mappedBy = "transaction", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     //@JsonManagedReference solves infinite looping
     private Set<TransactionDetail> details;
 
-    private String status;
-
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private LocalDate created;
-
-    @DateTimeFormat(pattern = "yyyy-MM-dd")
-    private LocalDate updated;
 }

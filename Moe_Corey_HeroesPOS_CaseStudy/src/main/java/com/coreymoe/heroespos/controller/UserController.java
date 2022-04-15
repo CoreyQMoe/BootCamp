@@ -2,9 +2,11 @@ package com.coreymoe.heroespos.controller;
 
 import com.coreymoe.heroespos.database.dao.UserDAO;
 import com.coreymoe.heroespos.database.dao.UserRolesDAO;
+import com.coreymoe.heroespos.database.entity.Item;
 import com.coreymoe.heroespos.database.entity.User;
 import com.coreymoe.heroespos.database.entity.UserRole;
 import com.coreymoe.heroespos.formbean.RegisterFormBean;
+import com.coreymoe.heroespos.formbean.SearchBean;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -20,7 +22,6 @@ import org.springframework.web.servlet.ModelAndView;
 import javax.validation.Valid;
 import java.time.LocalDate;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 @Slf4j
@@ -90,7 +91,6 @@ public class UserController {
         user.setZipCode(form.getZipCode());
         user.setActive(1);
         user.setCreated(LocalDate.now());
-        user.setUpdated(LocalDate.now());
 
         userDAO.save(user);
 
@@ -111,11 +111,48 @@ public class UserController {
 
         List<User> users = userDAO.findAllUsers();
 
+        response.addObject("users", users);
 
-        // very basic example of error checking
-//        if (!StringUtils.isEmpty(firstName)) {
-//            employees = employeeDAO.findByFirstNameIgnoreCaseContaining(firstName);
-//        }
+        return response;
+    }
+
+    @RequestMapping(value="/admin/userSearchSubmit", method= RequestMethod.GET )
+    public ModelAndView searchSubmit(@Valid SearchBean form, BindingResult bindingResult) throws Exception{
+        ModelAndView response = new ModelAndView();
+        response.setViewName("/admin/userSearch");
+        List<User> users = new ArrayList<>();
+
+        if(bindingResult.hasErrors()) {
+
+            for(ObjectError error : bindingResult.getAllErrors()) {
+                log.info(((FieldError)error).getField() + " " + error.getDefaultMessage());
+            }
+
+            users = userDAO.findAllUsers();
+
+            response.addObject("users", users);
+            response.addObject("form", form);
+            response.addObject("bindingResult", bindingResult);
+
+            return response;
+        }
+
+        switch (form.getSearchRadio()) {
+            case "id": users.add(userDAO.findUserById(Integer.parseInt(form.getSearchCriteria())));
+                break;
+            case "firstName": users = userDAO.findByFirstNameIgnoreCaseContaining(form.getSearchCriteria());
+                break;
+            case "lastName": users = userDAO.findByLastNameIgnoreCaseContaining(form.getSearchCriteria());
+                break;
+            case "email": users = userDAO.findByEmailIgnoreCaseContaining(form.getSearchCriteria());
+                break;
+            case "phoneNumber": users = userDAO.findUsersByPhoneNumberContaining(form.getSearchCriteria());
+                break;
+            case "active": users = userDAO.findByActive(Integer.parseInt(form.getSearchCriteria()));
+                break;
+            case "created": users = userDAO.findByCreated(form.getSearchCriteria());
+                break;
+        }
 
         response.addObject("users", users);
 

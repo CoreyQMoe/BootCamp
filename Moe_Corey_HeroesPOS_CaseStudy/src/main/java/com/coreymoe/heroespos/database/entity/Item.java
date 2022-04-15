@@ -35,7 +35,4 @@ public class Item {
 
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private LocalDate created;
-
-    @DateTimeFormat(pattern = "yyyy-MM-dd")
-    private LocalDate updated;
 }

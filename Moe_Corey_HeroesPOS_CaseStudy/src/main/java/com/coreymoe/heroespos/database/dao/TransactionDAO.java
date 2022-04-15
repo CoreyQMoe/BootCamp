@@ -6,23 +6,32 @@ import com.coreymoe.heroespos.database.entity.TransactionDetail;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
+import org.springframework.security.core.parameters.P;
 import org.springframework.stereotype.Repository;
 
-import java.util.Date;
 import java.util.List;
 
 @Repository
 public interface TransactionDAO  extends JpaRepository<Transaction, Long> {
 
-    Transaction findById(@Param("id") Integer id);
+    Transaction findTransactionById(@Param("id") Integer id);
 
-    List<Transaction> findByUser(@Param("user") User user);
+    @Query(value = "SELECT * FROM transactions t JOIN (SELECT * FROM users WHERE upper(first_name) LIKE upper(:firstName)) AS u ON t.user_id = u.id;", nativeQuery = true)
+    List<Transaction> findByUserFirstNameIgnoreCase(@Param("firstName") String firstName);
 
-    List<Transaction> findByCreated(@Param("created") Date created);
+    @Query(value = "SELECT * FROM transactions t JOIN (SELECT * FROM users WHERE upper(last_name) LIKE upper(:lastName)) AS u ON t.user_id = u.id;", nativeQuery = true)
+    List<Transaction> findByUserLastNameIgnoreCase(@Param("lastName") String lastName);
 
-    @Query(value = "SELECT * FROM transactiondetails td LEFT JOIN FETCH transactions t WHERE td.transaction_id = t.id AND t.id = :id", nativeQuery = true)
+    List<Transaction> findByStatus(@Param("status") String status);
+
+    List<Transaction> findByTotal(@Param("total") Double total);
+
+    @Query(value = "SELECT * FROM transactions WHERE created = :created", nativeQuery = true)
+    List<Transaction> findByCreated(@Param("created") String created);
+
+    @Query(value = "SELECT * FROM transaction_details td JOIN FETCH transactions t ON td.transaction_id = t.id AND t.id = :id", nativeQuery = true)
     List<TransactionDetail> findDetailsByTransactionId(@Param("id") Integer id);
 
-    @Query(value = "SELECT * FROM Transactions", nativeQuery = true)
+    @Query(value = "SELECT * FROM transactions", nativeQuery = true)
     List<Transaction> findAllTransactions();
 }

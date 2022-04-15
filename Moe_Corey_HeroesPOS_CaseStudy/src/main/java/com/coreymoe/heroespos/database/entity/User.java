@@ -44,7 +44,7 @@ public class User {
 
     @Column(name = "phone_number",
             nullable = false)
-    private Integer phoneNumber;
+    private String phoneNumber;
 
     @Column(length = 30)
     private String address;
@@ -69,7 +69,4 @@ public class User {
 
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private LocalDate created;
-
-    @DateTimeFormat(pattern = "yyyy-MM-dd")
-    private LocalDate updated;
 }

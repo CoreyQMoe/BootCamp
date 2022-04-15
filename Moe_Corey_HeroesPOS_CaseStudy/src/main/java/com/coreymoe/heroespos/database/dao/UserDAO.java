@@ -24,11 +24,11 @@ public interface UserDAO extends JpaRepository<User, Long> {
 
     List<User> findByEmailIgnoreCaseContaining(@Param("email") String email);
 
-    List<User> findByPhoneNumberContaining(@Param("phoneNumber")Integer phoneNumber);
+    List<User> findUsersByPhoneNumberContaining(@Param("phoneNumber") String phoneNumber);
 
     List<User> findByActive(@Param("active") Integer active);
 
-    List<User> findByCreatedContaining(@Param("created") Date created);
+    List<User> findByCreated(@Param("created") String created);
 
     @Query(value = "SELECT e.first_name FROM Users e", nativeQuery = true)
     List<String> getAllUserFirstNames();

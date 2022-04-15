@@ -38,7 +38,7 @@ public class RegisterFormBean {
     private String email;
 
     @NotNull(message = "Phone number is required.")
-    private Integer phoneNumber;
+    private String phoneNumber;
 
     @NotBlank(message = "Address is required.")
     private String address;
@@ -52,8 +52,6 @@ public class RegisterFormBean {
     @NotNull(message = "Zip code is required.")
     @Range(min = 501, max = 99950)
     private Integer zipCode;
-
-    private List<Integer> ids;
 
     private List<String> fullNames;
 }

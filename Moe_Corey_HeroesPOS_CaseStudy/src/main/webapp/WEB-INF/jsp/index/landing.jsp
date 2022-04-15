@@ -8,6 +8,14 @@
             <div>
                 <a href="../search/itemSearch">To View Items Click Here</a>
             </div>
+            <sec:authorize access="hasAuthority('ADMIN')">
+                <div>
+                    <a href="../admin/transactionSearch">To View Transactions Click Here</a>
+                </div>
+                <div>
+                    <a href="../admin/userSearch">To View Users Click Here</a>
+                </div>
+            </sec:authorize>
             <div>
                 <a href="">To Edit Your Profile Click Here</a>
             </div>
