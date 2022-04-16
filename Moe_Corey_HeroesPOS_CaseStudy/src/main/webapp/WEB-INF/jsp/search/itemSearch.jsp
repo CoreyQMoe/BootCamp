@@ -8,7 +8,10 @@
     <div class="innerContent">
         <h1 class="pageLabel">Items</h1>
         <h1 id="logo">HeroesPOS</h1>
-        <form action="/search/itemSearchSubmit" id="searchForm" name="searchForm">
+        <sec:authorize access="hasAuthority('ADMIN')">
+                <a href="/edit/newItem" id="editItemButton" class="btn btn-outline-success">Create New Item</a>
+        </sec:authorize>
+        <form action="/search/itemSearchSubmit" id="searchForm" name="searchForm" method="post">
             <div>
                 <label for="searchCriteria" style="margin-right: 2%">Search Criteria:</label>
                 <input type="text" id="searchCriteria" name="searchCriteria"
@@ -16,10 +19,10 @@
                 <button id="searchButton" class="btn btn-outline-success" type="submit">Search</button>
             </div>
             <c:forEach items='${bindingResult.getFieldErrors("searchCriteria")}' var="error">
-                <div style="color: #f70a04; margin-bottom: 1%">${error.getDefaultMessage()}</div>
+                <div class="error">${error.getDefaultMessage()}</div>
             </c:forEach>
             <c:forEach items='${bindingResult.getFieldErrors("searchRadio")}' var="error">
-                <div style="color: #f70a04; margin-bottom: 1%">${error.getDefaultMessage()}</div>
+                <div class="error">${error.getDefaultMessage()}</div>
             </c:forEach>
             <div class="itemTable">
                 <table>
@@ -49,7 +52,7 @@
                                 <label for="createdSearch">Create Date</label></th>
                             <th>Edit</th>
                         </sec:authorize>
-                        <th>Add Item</th>
+                        <th>Add To Cart</th>
                     </tr>
                     <c:forEach items="${items}" var="item">
                         <tr>
@@ -60,9 +63,9 @@
                             <sec:authorize access="hasAuthority('ADMIN')">
                                 <td>${item.active}</td>
                                 <td>${item.created}</td>
-                                <td><a href="/admin/itemEdit/${user.id}">Edit</a></td>
+                                <td><a href="/edit/editItem/${item.id}">Edit</a></td>
                             </sec:authorize>
-                            <td><a href="">Add Item</a></td>
+                            <td><a href="">Add To Cart</a></td>
                         </tr>
                     </c:forEach>
                 </table>

@@ -20,10 +20,10 @@
     <sec:authorize access="isAuthenticated()">
         <span class="headLink">Logged in as: <sec:authentication property="principal.username"/></span>
         &nbsp; | &nbsp;<a class="headLink" href="/login/logout">Logout</a>
-        &nbsp; | &nbsp;<a class="headLink" href="../search/itemSearch">Items</a>
+        &nbsp; | &nbsp;<a class="headLink" href="/search/itemSearch">Items</a>
         <sec:authorize access="hasAuthority('ADMIN')">
-            &nbsp; | &nbsp;<a class="headLink" href="../search/transactionSearch">Transactions</a>
-            &nbsp; | &nbsp;<a class="headLink" href=../search/userSearch>Users</a>
+            &nbsp; | &nbsp;<a class="headLink" href="/search/transactionSearch">Transactions</a>
+            &nbsp; | &nbsp;<a class="headLink" href="/search/userSearch">Users</a>
         </sec:authorize>
             &nbsp; | &nbsp;<a class="headLink" href="#">Cart</a>
             &nbsp; | &nbsp;<a class="headLink" href="#">Profile</a>

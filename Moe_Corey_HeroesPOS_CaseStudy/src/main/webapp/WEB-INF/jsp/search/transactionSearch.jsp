@@ -15,11 +15,11 @@
                 <button id="searchButton" class="btn btn-outline-success" type="submit">Search</button>
             </div>
             <c:forEach items='${bindingResult.getFieldErrors("searchCriteria")}' var="error">
-                <div style="color: #f70a04; margin-bottom: 1%">
+                <div class="error">
                         ${error.getDefaultMessage()}</div>
             </c:forEach>
             <c:forEach items='${bindingResult.getFieldErrors("searchRadio")}' var="error">
-                <div style="color: #f70a04; margin-bottom: 1%">${error.getDefaultMessage()}</div>
+                <div class="error">${error.getDefaultMessage()}</div>
             </c:forEach>
             <table class="userTable">
                 <tr>
@@ -57,7 +57,7 @@
                         <td>${transaction.total}</td>
                         <td>${transaction.status}</td>
                         <td>${transaction.created}</td>
-                        <td><a href="">Edit</a></td>
+                        <td><a href="/edit/editTransaction/${transaction.id}">Edit</a></td>
                     </tr>
                 </c:forEach>
             </table>

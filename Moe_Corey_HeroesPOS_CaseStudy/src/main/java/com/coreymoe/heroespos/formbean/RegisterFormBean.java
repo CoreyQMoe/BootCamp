@@ -37,6 +37,7 @@ public class RegisterFormBean {
     @Pattern(regexp = "^[a-z0-9]+@[a-z]+\\.[a-z]{2,3}", message = "Email format invalid")
     private String email;
 
+    @Pattern(regexp = "\\d{10}", message = "Phone number must contain a ten digit number")
     @NotNull(message = "Phone number is required.")
     private String phoneNumber;
 
@@ -46,6 +47,7 @@ public class RegisterFormBean {
     @NotBlank(message = "City is required.")
     private String city;
 
+    @Pattern(regexp = "[a-zA-Z]{2}", message = "Enter two character state identifier")
     @NotBlank(message = "State is required.")
     private String state;
 

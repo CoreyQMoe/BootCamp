@@ -28,10 +28,10 @@ public class TransactionController {
     @Autowired
     private UserDAO userDAO;
 
-    @RequestMapping(value="/admin/transactionSearch", method= RequestMethod.GET )
+    @RequestMapping(value="/search/transactionSearch", method= RequestMethod.GET )
     public ModelAndView search() throws Exception{
         ModelAndView response = new ModelAndView();
-        response.setViewName("admin/transactionSearch");
+        response.setViewName("search/transactionSearch");
 
         List<Transaction> transactions = transactionDAO.findAllTransactions();
 
@@ -40,7 +40,7 @@ public class TransactionController {
         return response;
     }
 
-    @RequestMapping(value="/admin/transactionSearchSubmit", method= RequestMethod.GET )
+    @RequestMapping(value="/search/transactionSearchSubmit", method= RequestMethod.GET )
     public ModelAndView searchSubmit(@Valid SearchBean form, BindingResult bindingResult) throws Exception{
         ModelAndView response = new ModelAndView();
         response.setViewName("admin/transactionSearch");

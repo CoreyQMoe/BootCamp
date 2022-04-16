@@ -13,7 +13,7 @@
             <h1 class="pageLabel">Edit User For</h1>
         </sec:authorize>
         <h1 id="logo">HeroesPOS</h1>
-        <form action="/user/editSubmit" method="post" style="padding-bottom: 4%" id="registrationForm"
+        <form action="/edit/editUserSubmit" method="post" style="padding-bottom: 4%" id="registrationForm"
               name="registrationForm">
             <div class="outerRegDiv">
                 <div class="innerRegDiv">
@@ -24,7 +24,7 @@
                     <div>
                         <input type="text" id="firstName" name="firstName" placeholder="Enter First Name" value="${form.firstName}"/>
                         <c:forEach items='${bindingResult.getFieldErrors("firstName")}' var="error">
-                            <div style="color: #f70a04;">${error.getDefaultMessage()}</div>
+                            <div class="error">${error.getDefaultMessage()}</div>
                         </c:forEach>
                     </div>
                 </div>
@@ -35,7 +35,7 @@
                     <div>
                         <input type="text" id="lastName" name="lastName" placeholder="Enter Last Name" value="${form.lastName}"/>
                         <c:forEach items='${bindingResult.getFieldErrors("lastName")}' var="error">
-                            <div style="color: #f70a04;">${error.getDefaultMessage()}</div>
+                            <div class="error">${error.getDefaultMessage()}</div>
                         </c:forEach>
                     </div>
                 </div>
@@ -48,7 +48,7 @@
                     <div>
                         <input type="password" id="password" name="password" placeholder="Enter Password" value="${form.password}"/>
                         <c:forEach items='${bindingResult.getFieldErrors("password")}' var="error">
-                            <div style="color: #f70a04;">${error.getDefaultMessage()}</div>
+                            <div class="error">${error.getDefaultMessage()}</div>
                         </c:forEach>
                     </div>
                 </div>
@@ -60,7 +60,7 @@
                         <input type="password" id="confirmPassword" name="confirmPassword"
                                placeholder="Confirm Password"   value="${form.confirmPassword}"/>
                         <c:forEach items='${bindingResult.getFieldErrors("confirmPassword")}' var="error">
-                            <div style="color: #f70a04;">${error.getDefaultMessage()}</div>
+                            <div class="error">${error.getDefaultMessage()}</div>
                         </c:forEach>
                     </div>
                 </div>
@@ -73,7 +73,7 @@
                     <div>
                         <input type="tel" id="phoneNumber" name="phoneNumber" placeholder="Enter Phone Number" value="${form.phoneNumber}"/>
                         <c:forEach items='${bindingResult.getFieldErrors("phoneNumber")}' var="error">
-                            <div style="color: #f70a04;">${error.getDefaultMessage()}</div>
+                            <div class="error">${error.getDefaultMessage()}</div>
                         </c:forEach>
                     </div>
                 </div>
@@ -84,7 +84,7 @@
                     <div>
                         <input type="email" id="email" name="email" placeholder="Enter Email" value="${form.email}"/>
                         <c:forEach items='${bindingResult.getFieldErrors("email")}' var="error">
-                            <div style="color: #f70a04;">${error.getDefaultMessage()}</div>
+                            <div class="error">${error.getDefaultMessage()}</div>
                         </c:forEach>
                     </div>
                 </div>
@@ -97,7 +97,7 @@
                     <div>
                         <input type="text" id="address" name="address" placeholder="Enter Address" value="${form.address}"/>
                         <c:forEach items='${bindingResult.getFieldErrors("address")}' var="error">
-                            <div style="color: #f70a04;">${error.getDefaultMessage()}</div>
+                            <div class="error">${error.getDefaultMessage()}</div>
                         </c:forEach>
                     </div>
                 </div>
@@ -109,7 +109,7 @@
                     <div>
                         <input type="text" id="city" name="city" placeholder="Enter City" value="${form.city}"/>
                         <c:forEach items='${bindingResult.getFieldErrors("city")}' var="error">
-                            <div style="color: #f70a04;">${error.getDefaultMessage()}</div>
+                            <div class="error">${error.getDefaultMessage()}</div>
                         </c:forEach>
                     </div>
                 </div>
@@ -122,7 +122,7 @@
                     <div>
                         <input type="text" id="state" name="state" placeholder="Enter State" value="${form.state}"/>
                         <c:forEach items='${bindingResult.getFieldErrors("state")}' var="error">
-                            <div style="color: #f70a04;">${error.getDefaultMessage()}</div>
+                            <div class="error">${error.getDefaultMessage()}</div>
                         </c:forEach>
                     </div>
                 </div>
@@ -133,21 +133,15 @@
                     <div>
                         <input type="number" id="zipCode" name="zipCode" placeholder="Enter Zip Code" value="${form.zipCode}"/>
                         <c:forEach items='${bindingResult.getFieldErrors("zipCode")}' var="error">
-                            <div style="color: #f70a04;">${error.getDefaultMessage()}</div>
+                            <div class="error">${error.getDefaultMessage()}</div>
                         </c:forEach>
                     </div>
                 </div>
             </div>
             <div>
-                <button id="submitButton" class="btn btn-outline-success" type="submit" >Edit </button>
+                <button id="submitButton" class="btn btn-outline-success" type="submit" >Submit</button>
             </div>
-        </form>
-        <sec:authorize access="!isAuthenticated()">
-            <div>
-                <a href="../login/login">To Login Click Here</a>
-            </div>
-        </sec:authorize>
-    </div>
+        </form>    </div>
 </div>
 
 <jsp:include page="../include/footer.jsp"/>

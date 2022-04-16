@@ -12,7 +12,7 @@ import java.util.List;
 @Repository
 public interface ItemDAO  extends JpaRepository<Item, Long> {
 
-    Item findById(@Param("id") Integer id);
+    Item findItemById(@Param("id") Integer id);
 
     List<Item> findByNameIgnoreCaseContaining(@Param("name") String name);
 

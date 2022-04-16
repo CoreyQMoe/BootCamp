@@ -11,7 +11,7 @@
 </c:if>
 
 <form action="/user/registerSubmit" method="GET">
-    <input type="hidden" name="id" value="${form.id}" )>
+    <input type="hidden" name="id" value="${form.id}">
     Email<input type="email" name="email" id="emailID" value="${form.email}">
 
     <c:forEach items='${bindingResult.getFieldErrors("email")}' var="error">

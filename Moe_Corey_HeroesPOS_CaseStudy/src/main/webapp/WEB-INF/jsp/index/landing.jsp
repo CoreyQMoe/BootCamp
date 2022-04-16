@@ -10,10 +10,10 @@
             </div>
             <sec:authorize access="hasAuthority('ADMIN')">
                 <div>
-                    <a href="../admin/transactionSearch">To View Transactions Click Here</a>
+                    <a href="../search/transactionSearch">To View Transactions Click Here</a>
                 </div>
                 <div>
-                    <a href="../admin/userSearch">To View Users Click Here</a>
+                    <a href="../search/userSearch">To View Users Click Here</a>
                 </div>
             </sec:authorize>
             <div>

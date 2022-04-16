@@ -26,17 +26,9 @@ public class IndexController {
     public ModelAndView index() throws Exception {
         ModelAndView response = new ModelAndView();
 
-        // this little block of code can grab the logged in user and look it up in the
-        // database to get the user object
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         String currentPrincipalName = authentication.getName();
         User loggedInUser = userDAO.findByEmail(currentPrincipalName);
-
-//        if ( loggedInUser == null ) {
-//            log.debug("Not logged in");
-//        } else {
-//            log.debug("User logged in " + loggedInUser);
-//        }
 
         response.setViewName("/index/index");
 
@@ -47,8 +39,6 @@ public class IndexController {
     public ModelAndView landing() throws Exception {
         ModelAndView response = new ModelAndView();
 
-        // this little block of code can grab the logged in user and look it up in the
-        // database to get the user object
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         String currentPrincipalName = authentication.getName();
         User loggedInUser = userDAO.findByEmail(currentPrincipalName);

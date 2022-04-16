@@ -2,7 +2,6 @@ package com.coreymoe.heroespos.controller;
 
 import com.coreymoe.heroespos.database.dao.UserDAO;
 import com.coreymoe.heroespos.database.dao.UserRolesDAO;
-import com.coreymoe.heroespos.database.entity.Item;
 import com.coreymoe.heroespos.database.entity.User;
 import com.coreymoe.heroespos.database.entity.UserRole;
 import com.coreymoe.heroespos.formbean.RegisterFormBean;
@@ -15,8 +14,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.FieldError;
 import org.springframework.validation.ObjectError;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.validation.Valid;
@@ -104,10 +102,10 @@ public class UserController {
     }
 
     @PreAuthorize("hasAuthority('ADMIN')")
-    @RequestMapping(value="/admin/userSearch", method= RequestMethod.GET )
+    @RequestMapping(value="/search/userSearch", method= RequestMethod.GET )
     public ModelAndView search() throws Exception{
         ModelAndView response = new ModelAndView();
-        response.setViewName("admin/userSearch");
+        response.setViewName("search/userSearch");
 
         List<User> users = userDAO.findAllUsers();
 
@@ -116,10 +114,10 @@ public class UserController {
         return response;
     }
 
-    @RequestMapping(value="/admin/userSearchSubmit", method= RequestMethod.GET )
+    @RequestMapping(value="/search/userSearchSubmit", method= RequestMethod.GET )
     public ModelAndView searchSubmit(@Valid SearchBean form, BindingResult bindingResult) throws Exception{
         ModelAndView response = new ModelAndView();
-        response.setViewName("/admin/userSearch");
+        response.setViewName("search/userSearch");
         List<User> users = new ArrayList<>();
 
         if(bindingResult.hasErrors()) {
@@ -158,34 +156,56 @@ public class UserController {
 
         return response;
     }
-/**
- * Work on editing users later
- */
-//    @GetMapping("/user/edit/{userId}")
-//    //public ModelAndView editUser(@RequestParam("userId") Integer userId) throws Exception {
-//    public ModelAndView editUser(@PathVariable("userId") Integer userId) throws Exception {
-//        ModelAndView response = new ModelAndView();
-//        response.setViewName("user/register");
-//
-//        User user = userDAO.findUserById(userId);
-//
-//        RegisterFormBean form = new RegisterFormBean();
-//
-//        form.setId(user.getId());
-//        form.setEmail(user.getEmail());
-//        form.setFirstName(user.getFirstName());
-//        form.setLastName(user.getLastName());
+
+    @GetMapping("/edit/editUser/{userId}")
+    public ModelAndView editUser(@PathVariable("userId") Integer userId) throws Exception {
+        ModelAndView response = new ModelAndView();
+        response.setViewName("edit/editUser");
+
+        User user = userDAO.findUserById(userId);
+
+        RegisterFormBean form = new RegisterFormBean();
+
+        form.setId(user.getId());
+        form.setEmail(user.getEmail());
+        form.setFirstName(user.getFirstName());
+        form.setLastName(user.getLastName());
+        form.setPassword(user.getPassword());
+        form.setConfirmPassword(user.getPassword());
+        form.setAddress(user.getAddress());
+        form.setCity(user.getCity());
+        form.setState(user.getState());
+        form.setZipCode(user.getZipCode());
+        form.setPhoneNumber(user.getPhoneNumber());
+
+        response.addObject("form", form);
+
+        return response;
+    }
+
+    @PostMapping("/edit/editUserSubmit/{userId}")
+    public ModelAndView editUserSubmit(@PathVariable("userId") Integer userId) throws Exception {
+        ModelAndView response = new ModelAndView();
+        response.setViewName("edit/editUser");
+
+        User user = userDAO.findUserById(userId);
+
+        RegisterFormBean form = new RegisterFormBean();
+
+        form.setId(user.getId());
+        form.setEmail(user.getEmail());
+        form.setFirstName(user.getFirstName());
+        form.setLastName(user.getLastName());
 //        form.setPassword(PasswordEncoder. user.getPassword());
-//        form.setConfirmPassword(user.getPassword());
-//        form.setAddress(user.getAddress());
-//        form.setCity(user.getCity());
-//        form.setState(user.getState());
-//        form.setZipCode(user.getZipCode());
-//        form.setPhoneNumber(user.getPhoneNumber());
-//
-//        // in this case we are adding the RegisterFormBean to the model
-//        response.addObject("form", form);
-//
-//        return response;
-//    }
+        form.setConfirmPassword(user.getPassword());
+        form.setAddress(user.getAddress());
+        form.setCity(user.getCity());
+        form.setState(user.getState());
+        form.setZipCode(user.getZipCode());
+        form.setPhoneNumber(user.getPhoneNumber());
+
+        response.addObject("form", form);
+
+        return response;
+    }
 }

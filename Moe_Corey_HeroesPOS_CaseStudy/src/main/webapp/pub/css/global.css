@@ -56,8 +56,8 @@ label, p {
     color: #d07103;
 }
 
-#loginButton, #clearButton, #submitButton, #newButton,
-#itemPageButton, #transactionPageButton, #userPageButton {
+#loginButton, #clearButton, #submitButton, #newButton, #editItemButton, #deactivateButton,
+#itemPageButton, #transactionPageButton, #userPageButton, #deleteButton, #activateButton {
     margin-top: 5%;
     color: #000000;
     border-color: black;
@@ -69,12 +69,9 @@ label, p {
     border-color: black;
 }
 
-#itemPageButton, #transactionPageButton, #userPageButton{
-    margin: 0 1% 5% 1%;
-}
-
 #loginButton:hover, #submitButton:hover, #clearButton:hover, #searchButton:hover, #newButton:hover,
-#userPageButton:hover, #itemPageButton:hover, #transactionPageButton:hover {
+#deactivateButton:hover, #activateButton:hover, #userPageButton:hover, #itemPageButton:hover,
+#transactionPageButton:hover, #editItemButton:hover, #deleteButton:hover {
     background-color: #d4d210;
     box-shadow: 0px 0px 40px 5px #d4d210;
 }
@@ -126,4 +123,8 @@ td, th {
 
 input[type="radio"] {
     margin-right: 10px;
+}
+
+.error {
+    color: #f70a04;
 }
