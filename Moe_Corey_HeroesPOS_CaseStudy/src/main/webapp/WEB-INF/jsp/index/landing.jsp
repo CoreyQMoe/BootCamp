@@ -1,3 +1,5 @@
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
+
 <jsp:include page="../include/header.jsp"/>
 
 <div class="mainContent">
@@ -17,7 +19,7 @@
                 </div>
             </sec:authorize>
             <div>
-                <a href="">To Edit Your Profile Click Here</a>
+<%--                <a href="../edit/editUser">To Edit Your Profile Click Here</a>--%>
             </div>
         </div>
     </div>

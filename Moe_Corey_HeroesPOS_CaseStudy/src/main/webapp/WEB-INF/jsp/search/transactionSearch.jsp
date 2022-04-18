@@ -47,7 +47,7 @@
                         <input type="radio" id="createdSearch" name="searchRadio" value="created">
                         <label for="createdSearch">Created</label>
                     </th>
-                    <th>Edit</th>
+<%--                    <th>Edit</th>--%>
                 </tr>
                 <c:forEach items="${transactions}" var="transaction">
                     <tr>
@@ -57,7 +57,7 @@
                         <td>${transaction.total}</td>
                         <td>${transaction.status}</td>
                         <td>${transaction.created}</td>
-                        <td><a href="/edit/editTransaction/${transaction.id}">Edit</a></td>
+<%--                        <td><a href="/edit/editTransaction/${transaction.id}">Edit</a></td>--%>
                     </tr>
                 </c:forEach>
             </table>

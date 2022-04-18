@@ -1,12 +1,9 @@
 package com.coreymoe.heroespos.database.dao;
 
-import com.coreymoe.heroespos.database.entity.User;
 import com.coreymoe.heroespos.database.entity.Transaction;
-import com.coreymoe.heroespos.database.entity.TransactionDetail;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
-import org.springframework.security.core.parameters.P;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -29,9 +26,9 @@ public interface TransactionDAO  extends JpaRepository<Transaction, Long> {
     @Query(value = "SELECT * FROM transactions WHERE created = :created", nativeQuery = true)
     List<Transaction> findByCreated(@Param("created") String created);
 
-    @Query(value = "SELECT * FROM transaction_details td JOIN FETCH transactions t ON td.transaction_id = t.id AND t.id = :id", nativeQuery = true)
-    List<TransactionDetail> findDetailsByTransactionId(@Param("id") Integer id);
-
     @Query(value = "SELECT * FROM transactions", nativeQuery = true)
     List<Transaction> findAllTransactions();
+
+    @Query(value = "SELECT FROM Transaction WHERE status = 'PENDING' AND userId = :userId")
+    Transaction findPendingTransactionByUserId(@Param("userId") Integer userId);
 }

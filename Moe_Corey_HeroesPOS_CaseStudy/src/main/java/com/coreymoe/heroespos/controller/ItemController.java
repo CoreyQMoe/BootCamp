@@ -7,6 +7,7 @@ import com.coreymoe.heroespos.formbean.SearchBean;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.FieldError;
 import org.springframework.validation.ObjectError;
@@ -116,12 +117,12 @@ public class ItemController {
         item.setName(form.getName());
         item.setDescription(form.getDescription());
         item.setPrice(Double.parseDouble(form.getPrice()));
-        item.setActive(1);
+        item.setActive(form.getActive());
         item.setCreated(LocalDate.now());
 
         itemDAO.save(item);
 
-        response.setViewName("edit/newItem");
+        response.setViewName("redirect:/search/itemSearch");
 
         return response;
     }
@@ -138,9 +139,22 @@ public class ItemController {
         form.setName(item.getName());
         form.setDescription(item.getDescription());
         form.setPrice(item.getPrice().toString());
+        form.setActive((item.getActive()));
 
         response.addObject("form", form);
-        response.setViewName("search/itemSearch");
+        response.setViewName("/edit/newItem");
+
+        return response;
+    }
+
+    @Transactional
+    @GetMapping("/edit/deleteItem/{itemId}")
+    public ModelAndView deleteItem(@PathVariable("itemId") Integer itemId) throws Exception {
+        ModelAndView response = new ModelAndView();
+
+        itemDAO.deleteById(itemId);
+
+        response.setViewName("redirect:/search/itemSearch");
 
         return response;
     }

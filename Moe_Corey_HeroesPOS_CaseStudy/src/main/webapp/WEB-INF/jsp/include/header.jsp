@@ -13,6 +13,7 @@
             crossorigin="anonymous"
     />
     <link rel="stylesheet" type="text/css" href="../../../pub/css/global.css"/>
+
     <title>HeroesPOS</title>
 </head>
 <body>
@@ -26,6 +27,6 @@
             &nbsp; | &nbsp;<a class="headLink" href="/search/userSearch">Users</a>
         </sec:authorize>
             &nbsp; | &nbsp;<a class="headLink" href="#">Cart</a>
-            &nbsp; | &nbsp;<a class="headLink" href="#">Profile</a>
+<%--            &nbsp; | &nbsp;<a class="headLink" href="#">Profile</a>--%>
     </sec:authorize>
 </div>

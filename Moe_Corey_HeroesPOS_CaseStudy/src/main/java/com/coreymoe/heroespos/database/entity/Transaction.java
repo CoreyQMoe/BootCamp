@@ -32,7 +32,6 @@ public class Transaction {
     private String status;
 
     @OneToMany(mappedBy = "transaction", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    //@JsonManagedReference solves infinite looping
     private Set<TransactionDetail> details;
 
     @DateTimeFormat(pattern = "yyyy-MM-dd")

@@ -42,31 +42,34 @@
                     </c:forEach>
                 </div>
             </div>
-            <div>
-                <div>
-                    <label for="itemPrice">Enter Price:</label>
+            <div class="outerRegDiv">
+                <div class="innerRegDiv">
+                    <div>
+                        <label for="itemPrice">Enter Price:</label>
+                    </div>
+                    <div>
+                        <input type="text" id="itemPrice" name="price" placeholder="Enter Price" value="${form.price}"/>
+                    </div>
+                    <c:forEach items='${bindingResult.getFieldErrors("price")}' var="error">
+                        <div class="error">${error.getDefaultMessage()}</div>
+                    </c:forEach>
                 </div>
-                <div>
-                    <input type="text" id="itemPrice" name="price" placeholder="Enter Price" value="${form.price}"/>
+                <div class="innerRegDiv">
+                    <div>
+                        <label for="itemActive">Enter Active:</label>
+                    </div>
+                    <div>
+                        <input type="text" id="itemActive" name="active" placeholder="Enter Active"
+                               value="${form.active}"/>
+                    </div>
                 </div>
-                <c:forEach items='${bindingResult.getFieldErrors("price")}' var="error">
-                    <div class="error">${error.getDefaultMessage()}</div>
-                </c:forEach>
             </div>
             <div>
-                <button id="submitButton" class="btn btn-outline-success" style="margin-right: 5%;">Submit</button>
-                <button id="clearButton" class="btn btn-outline-success" style="margin-left: 5%;">Clear</button>
+                <button id="submitButton" class="btn btn-outline-success">Submit</button>
                 <c:if test="${not empty form.id}">
-                    <c:if test="${form.active == 1}">
-                        <button id="deactivateButton" class="btn btn-outline-success" style="margin-right: 5%;">
-                            Deactivate
-                        </button>
-                    </c:if>
-                    <c:if test="${form.active == 1}">
-                        <button id="activateButton" class="btn btn-outline-success" style="margin-right: 5%;">Activate
-                        </button>
-                    </c:if>
-                    <button id="deleteButton" class="btn btn-outline-success" style="margin-left: 5%;">Delete</button>
+                    <button type="submit" formaction="/edit/deleteItem/${form.id}" id="deleteButton"
+                            class="btn btn-outline-success">Delete
+                    </button>
                 </c:if>
             </div>
         </form>

@@ -57,16 +57,16 @@ label, p {
 }
 
 #loginButton, #clearButton, #submitButton, #newButton, #editItemButton, #deactivateButton,
-#itemPageButton, #transactionPageButton, #userPageButton, #deleteButton, #activateButton {
-    margin-top: 5%;
+#itemPageButton, #transactionPageButton, #userPageButton, #deleteButton, #activateButton,
+#searchButton{
     color: #000000;
     border-color: black;
+    margin: 0 2% 0 2%;
+    /*color: #d4d210;*/
+    /*border-color: #d4d210;*/
 }
-
-#searchButton {
-    margin-left: 3%;
-    color: #000000;
-    border-color: black;
+#loginButton {
+    margin-top: 5%;
 }
 
 #loginButton:hover, #submitButton:hover, #clearButton:hover, #searchButton:hover, #newButton:hover,
@@ -74,6 +74,8 @@ label, p {
 #transactionPageButton:hover, #editItemButton:hover, #deleteButton:hover {
     background-color: #d4d210;
     box-shadow: 0px 0px 40px 5px #d4d210;
+    /*background-color: black;*/
+    /*box-shadow: 0 0 40px 5px black;*/
 }
 
 .outerRegDiv {

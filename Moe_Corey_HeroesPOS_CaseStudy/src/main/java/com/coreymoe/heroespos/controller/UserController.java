@@ -4,6 +4,7 @@ import com.coreymoe.heroespos.database.dao.UserDAO;
 import com.coreymoe.heroespos.database.dao.UserRolesDAO;
 import com.coreymoe.heroespos.database.entity.User;
 import com.coreymoe.heroespos.database.entity.UserRole;
+import com.coreymoe.heroespos.formbean.EditUserBean;
 import com.coreymoe.heroespos.formbean.RegisterFormBean;
 import com.coreymoe.heroespos.formbean.SearchBean;
 import lombok.extern.slf4j.Slf4j;
@@ -160,52 +161,68 @@ public class UserController {
     @GetMapping("/edit/editUser/{userId}")
     public ModelAndView editUser(@PathVariable("userId") Integer userId) throws Exception {
         ModelAndView response = new ModelAndView();
-        response.setViewName("edit/editUser");
 
         User user = userDAO.findUserById(userId);
 
-        RegisterFormBean form = new RegisterFormBean();
+        EditUserBean form = new EditUserBean();
 
         form.setId(user.getId());
         form.setEmail(user.getEmail());
         form.setFirstName(user.getFirstName());
         form.setLastName(user.getLastName());
-        form.setPassword(user.getPassword());
-        form.setConfirmPassword(user.getPassword());
+//        form.setPassword(user.getPassword());
+//        form.setConfirmPassword(user.getPassword());
         form.setAddress(user.getAddress());
         form.setCity(user.getCity());
         form.setState(user.getState());
         form.setZipCode(user.getZipCode());
         form.setPhoneNumber(user.getPhoneNumber());
+        form.setActive(user.getActive());
 
         response.addObject("form", form);
-
+        response.setViewName("edit/editUser");
         return response;
     }
 
     @PostMapping("/edit/editUserSubmit/{userId}")
-    public ModelAndView editUserSubmit(@PathVariable("userId") Integer userId) throws Exception {
+    public ModelAndView editUserSubmit(@Valid EditUserBean form, @PathVariable("userId") Integer userId) throws Exception {
         ModelAndView response = new ModelAndView();
-        response.setViewName("edit/editUser");
 
         User user = userDAO.findUserById(userId);
 
-        RegisterFormBean form = new RegisterFormBean();
+        user.setEmail(form.getEmail());
+        user.setFirstName(form.getFirstName());
+        user.setLastName(form.getLastName());
+//        user.setPassword(passwordEncoder.encode(form.getPassword()));
+        user.setPhoneNumber(form.getPhoneNumber());
+        user.setAddress(form.getAddress());
+        user.setCity(form.getCity());
+        user.setState(form.getState());
+        user.setZipCode(form.getZipCode());
 
-        form.setId(user.getId());
-        form.setEmail(user.getEmail());
-        form.setFirstName(user.getFirstName());
-        form.setLastName(user.getLastName());
-//        form.setPassword(PasswordEncoder. user.getPassword());
-        form.setConfirmPassword(user.getPassword());
-        form.setAddress(user.getAddress());
-        form.setCity(user.getCity());
-        form.setState(user.getState());
-        form.setZipCode(user.getZipCode());
-        form.setPhoneNumber(user.getPhoneNumber());
+        userDAO.save(user);
 
         response.addObject("form", form);
+        response.setViewName("redirect:/edit/editUser/" + userId);
 
+        return response;
+    }
+
+    @RequestMapping(value = "/edit/flipUserActivation/{userId}")
+    public ModelAndView flipActivation(@PathVariable("userId") Integer userId) throws Exception {
+        ModelAndView response = new ModelAndView();
+
+        User user = userDAO.findUserById(userId);
+
+        if(user.getActive() == 1) {
+            user.setActive(0);
+        } else {
+            user.setActive(1);
+        }
+
+        userDAO.save(user);
+
+        response.setViewName("redirect:/search/userSearch");
         return response;
     }
 }

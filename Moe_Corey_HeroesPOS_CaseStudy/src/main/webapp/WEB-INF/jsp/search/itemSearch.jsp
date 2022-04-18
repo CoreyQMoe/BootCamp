@@ -11,7 +11,7 @@
         <sec:authorize access="hasAuthority('ADMIN')">
                 <a href="/edit/newItem" id="editItemButton" class="btn btn-outline-success">Create New Item</a>
         </sec:authorize>
-        <form action="/search/itemSearchSubmit" id="searchForm" name="searchForm" method="post">
+        <form action="/search/itemSearchSubmit" id="searchForm" name="searchForm" method="get">
             <div>
                 <label for="searchCriteria" style="margin-right: 2%">Search Criteria:</label>
                 <input type="text" id="searchCriteria" name="searchCriteria"
@@ -65,7 +65,7 @@
                                 <td>${item.created}</td>
                                 <td><a href="/edit/editItem/${item.id}">Edit</a></td>
                             </sec:authorize>
-                            <td><a href="">Add To Cart</a></td>
+                            <td><a class="addToCart" href="/cart/addToCart/${item.id}">Add To Cart</a></td>
                         </tr>
                     </c:forEach>
                 </table>
@@ -73,5 +73,5 @@
         </form>
     </div>
 </div>
-
+<script src="../../../pub/js/cart.js"></script>
 <jsp:include page="../include/footer.jsp"/>

@@ -26,4 +26,6 @@ public interface ItemDAO  extends JpaRepository<Item, Long> {
 
     @Query(value = "SELECT * FROM Items", nativeQuery = true)
     List<Item> findAllItems();
+
+    void deleteById(@Param("id") Integer id);
 }
