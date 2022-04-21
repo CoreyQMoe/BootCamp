@@ -13,7 +13,9 @@ public class LoginController {
     public ModelAndView login() throws Exception {
         ModelAndView response = new ModelAndView();
         response.setViewName("login/login");
-        
+
+        log.info("Login page has been accessed.");
+
         return response;
     }
 }

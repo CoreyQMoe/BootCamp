@@ -12,7 +12,9 @@ import java.util.List;
 @Repository
 public interface TransactionDetailDAO  extends JpaRepository<TransactionDetail, Long> {
 
-    List<TransactionDetail> findTransactionDetailByTransactionId(@Param("id") Integer id);
+    List<TransactionDetail> findTransactionDetailsByTransactionId(@Param("transaction_id") Integer transaction_id);
+
+    TransactionDetail findTransactionDetailByTransactionIdAndItemId(@Param("transaction_id") Integer transaction_id, @Param("item_id") Integer item_id);
 
     //select td.product_id, p.name, count(*) as cnt from transaction_details td, items i where td.product_id = i.idgroup by product_id
 }

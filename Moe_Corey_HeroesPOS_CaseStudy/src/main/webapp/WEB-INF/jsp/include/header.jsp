@@ -26,7 +26,7 @@
             &nbsp; | &nbsp;<a class="headLink" href="/search/transactionSearch">Transactions</a>
             &nbsp; | &nbsp;<a class="headLink" href="/search/userSearch">Users</a>
         </sec:authorize>
-            &nbsp; | &nbsp;<a class="headLink" href="#">Cart</a>
-<%--            &nbsp; | &nbsp;<a class="headLink" href="#">Profile</a>--%>
+            &nbsp; | &nbsp;<a class="headLink" href="/cart/cart">Cart</a>
+            &nbsp; | &nbsp;<a class="headLink" href="/edit/profile">Profile</a>
     </sec:authorize>
 </div>

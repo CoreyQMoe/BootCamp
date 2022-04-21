@@ -7,7 +7,6 @@ import com.coreymoe.heroespos.formbean.SearchBean;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.transaction.annotation.Transactional;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.FieldError;
 import org.springframework.validation.ObjectError;
@@ -35,6 +34,8 @@ public class ItemController {
 
         response.addObject("items", items);
 
+        log.info("The item search page has been accessed.");
+
         return response;
     }
 
@@ -45,6 +46,8 @@ public class ItemController {
         List<Item> items = new ArrayList<>();
 
         if(bindingResult.hasErrors()) {
+
+            log.error("There were errors inputting information on the item search page.");
 
             for(ObjectError error : bindingResult.getAllErrors()) {
                 log.info(((FieldError)error).getField() + " " + error.getDefaultMessage());
@@ -76,6 +79,8 @@ public class ItemController {
 
         response.addObject("items", items);
 
+        log.info("Item search complete.");
+
         return response;
     }
 
@@ -88,6 +93,9 @@ public class ItemController {
         response.addObject("form", form);
 
         response.setViewName("edit/newItem");
+
+        log.info("Item creation page has been accessed.");
+
         return response;
     }
 
@@ -96,6 +104,8 @@ public class ItemController {
         ModelAndView response = new ModelAndView();
 
         if(bindingResult.hasErrors()) {
+
+            log.error("There were errors inputting information on the item creation page.");
 
             for (ObjectError error : bindingResult.getAllErrors()) {
                 log.info(((FieldError) error).getField() + " " + error.getDefaultMessage());
@@ -122,6 +132,8 @@ public class ItemController {
 
         itemDAO.save(item);
 
+        log.info("Item " + item.getId() + "has been updated.");
+
         response.setViewName("redirect:/search/itemSearch");
 
         return response;
@@ -144,10 +156,11 @@ public class ItemController {
         response.addObject("form", form);
         response.setViewName("/edit/newItem");
 
+        log.info("Item edit page has been accessed for item " + itemId + ".");
+
         return response;
     }
 
-    @Transactional
     @GetMapping("/edit/deleteItem/{itemId}")
     public ModelAndView deleteItem(@PathVariable("itemId") Integer itemId) throws Exception {
         ModelAndView response = new ModelAndView();
@@ -155,6 +168,8 @@ public class ItemController {
         itemDAO.deleteById(itemId);
 
         response.setViewName("redirect:/search/itemSearch");
+
+        log.info("Item was deleted.");
 
         return response;
     }

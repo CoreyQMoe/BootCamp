@@ -29,6 +29,6 @@ public interface TransactionDAO  extends JpaRepository<Transaction, Long> {
     @Query(value = "SELECT * FROM transactions", nativeQuery = true)
     List<Transaction> findAllTransactions();
 
-    @Query(value = "SELECT FROM Transaction WHERE status = 'PENDING' AND userId = :userId")
+    @Query(value = "SELECT * FROM Transactions WHERE status = 'PENDING' AND user_id = :userId", nativeQuery = true)
     Transaction findPendingTransactionByUserId(@Param("userId") Integer userId);
 }

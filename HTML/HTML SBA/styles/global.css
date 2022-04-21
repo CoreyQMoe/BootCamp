@@ -111,3 +111,7 @@ input::-webkit-inner-spin-button {
   border: solid #2ebb03 !important;
   color: #d07103;
 }
+
+span {
+  color: #d07103;
+}

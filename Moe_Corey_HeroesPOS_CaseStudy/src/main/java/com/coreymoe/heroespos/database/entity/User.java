@@ -5,9 +5,11 @@ import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
 import java.time.LocalDate;
-import java.util.Date;
 import java.util.Set;
 
+@Builder
+@ToString
+@EqualsAndHashCode
 @Getter
 @Setter
 @NoArgsConstructor
@@ -63,9 +65,9 @@ public class User {
 
     @Column(length = 20)
     private String password;
-
-    @OneToMany(mappedBy = "user", fetch = FetchType.LAZY)
-    private Set<Transaction> transactions;
+//
+//    @OneToMany(mappedBy = "user", fetch = FetchType.LAZY)
+//    private Set<Transaction> transactions;
 
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private LocalDate created;

@@ -23,48 +23,48 @@
                 <div class="error">${error.getDefaultMessage()}</div>
             </c:forEach>
             <div class="userTable">
-                <table>
-                    <tr>
-                        <th>
+                <table class="searchTable">
+                    <tr class="searchTable">
+                        <th class="searchTable">
                             <input type="radio" id="idSearch" name="searchRadio" value="id">
                             <label for="idSearch">User ID</label>
                         </th>
-                        <th>
+                        <th class="searchTable">
                             <input type="radio" id="firstNameSearch" name="searchRadio" value="firstName">
                             <label for="firstNameSearch">First Name</label>
                         </th>
-                        <th>
+                        <th class="searchTable">
                             <input type="radio" id="lastNameSearch" name="searchRadio" value="lastName">
                             <label for="lastNameSearch">Last Name</label>
                         </th>
-                        <th>
+                        <th class="searchTable">
                             <input type="radio" id="emailSearch" name="searchRadio" value="email">
                             <label for="emailSearch">Email</label>
                         </th>
-                        <th>
+                        <th class="searchTable">
                             <input type="radio" id="phoneNumberSearch" name="searchRadio" value="phoneNumber">
                             <label for="phoneNumberSearch">Phone Number</label>
                         </th>
-                        <th>
+                        <th class="searchTable">
                             <input type="radio" id="activeSearch" name="searchRadio" value="active">
                             <label for="activeSearch">Active</label>
                         </th>
-                        <th>
+                        <th class="searchTable">
                             <input type="radio" id="createdSearch" name="searchRadio" value="created">
                             <label for="createdSearch">Created</label>
                         </th>
-                        <th>Edit</th>
+                        <th class="searchTable">Edit</th>
                     </tr>
                     <c:forEach items="${users}" var="user">
-                        <tr>
-                            <td>${user.id}</td>
-                            <td>${user.firstName}</td>
-                            <td>${user.lastName}</td>
-                            <td>${user.email}</td>
-                            <td>${user.phoneNumber}</td>
-                            <td>${user.active}</td>
-                            <td>${user.created}</td>
-                            <td><a href="/edit/editUser/${user.id}">Edit</a></td>
+                        <tr class="searchTable">
+                            <td class="searchTable">${user.id}</td>
+                            <td class="searchTable">${user.firstName}</td>
+                            <td class="searchTable">${user.lastName}</td>
+                            <td class="searchTable">${user.email}</td>
+                            <td class="searchTable">${user.phoneNumber}</td>
+                            <td class="searchTable">${user.active}</td>
+                            <td class="searchTable">${user.created}</td>
+                            <td class="searchTable"><a href="/edit/editUser/${user.id}">Edit</a></td>
                         </tr>
                     </c:forEach>
                 </table>

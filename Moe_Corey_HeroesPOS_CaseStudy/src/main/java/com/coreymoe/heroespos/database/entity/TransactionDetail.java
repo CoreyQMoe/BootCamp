@@ -19,12 +19,16 @@ public class TransactionDetail {
     private Integer id;
 
     @ManyToOne(cascade = CascadeType.ALL)
+    @ToString.Exclude
+    @EqualsAndHashCode.Exclude
     private Item item;
 
-    @Column(nullable = false)
     private Integer quantity;
 
     @ManyToOne(fetch = FetchType.LAZY, optional = false, cascade = CascadeType.ALL)
-    @JoinColumn(name = "transaction_id", nullable = false)
+    @JoinColumn(name = "transaction_id")
+    @ToString.Exclude
+    @EqualsAndHashCode.Exclude
     private Transaction transaction;
+
 }

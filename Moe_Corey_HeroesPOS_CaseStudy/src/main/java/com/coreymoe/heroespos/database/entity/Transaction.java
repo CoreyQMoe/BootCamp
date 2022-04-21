@@ -10,7 +10,8 @@ import java.util.Date;
 import java.util.List;
 import java.util.Set;
 
-
+@EqualsAndHashCode
+@Builder
 @Getter
 @Setter
 @ToString
@@ -32,7 +33,9 @@ public class Transaction {
     private String status;
 
     @OneToMany(mappedBy = "transaction", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    private Set<TransactionDetail> details;
+    @ToString.Exclude
+    @EqualsAndHashCode.Exclude
+    private List<TransactionDetail> details;
 
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private LocalDate created;

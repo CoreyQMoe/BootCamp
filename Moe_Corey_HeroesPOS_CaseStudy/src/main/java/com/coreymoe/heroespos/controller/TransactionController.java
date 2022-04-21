@@ -37,16 +37,20 @@ public class TransactionController {
 
         response.addObject("transactions", transactions);
 
+        log.info("The transaction search page has been accessed.");
+
         return response;
     }
 
     @RequestMapping(value="/search/transactionSearchSubmit", method= RequestMethod.GET )
     public ModelAndView searchSubmit(@Valid SearchBean form, BindingResult bindingResult) throws Exception{
         ModelAndView response = new ModelAndView();
-        response.setViewName("admin/transactionSearch");
+
         List<Transaction> transactions = new ArrayList<>();
 
         if(bindingResult.hasErrors()) {
+
+            log.error("There were errors inputting information on the transaction search page.");
 
             for(ObjectError error : bindingResult.getAllErrors()) {
                 log.info(((FieldError)error).getField() + " " + error.getDefaultMessage());
@@ -77,6 +81,9 @@ public class TransactionController {
         }
 
         response.addObject("transactions", transactions);
+        response.setViewName("search/transactionSearch");
+
+        log.info("Transaction search has completed.");
 
         return response;
     }

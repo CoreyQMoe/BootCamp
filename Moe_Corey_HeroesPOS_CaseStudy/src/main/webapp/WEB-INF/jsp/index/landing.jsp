@@ -19,7 +19,7 @@
                 </div>
             </sec:authorize>
             <div>
-<%--                <a href="../edit/editUser">To Edit Your Profile Click Here</a>--%>
+                <a href="../edit/profile">To Edit Your Profile Click Here</a>
             </div>
         </div>
     </div>

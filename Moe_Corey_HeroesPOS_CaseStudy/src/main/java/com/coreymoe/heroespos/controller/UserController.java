@@ -10,6 +10,8 @@ import com.coreymoe.heroespos.formbean.SearchBean;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
@@ -42,17 +44,10 @@ public class UserController {
         ModelAndView response = new ModelAndView();
         RegisterFormBean form = new RegisterFormBean();
 
-        List<String> firstNames = userDAO.getAllUserFirstNames();
-        List<String> lastNames = userDAO.getAllUserLastNames();
-        List<String> fullNames = new ArrayList<>();
-
-        for (int i = 0; i < firstNames.size(); i++) {
-            fullNames.add(firstNames.get(i) + " " + lastNames.get(i));
-        }
-        form.setFullNames(fullNames);
-
         response.setViewName("user/register");
         response.addObject("form", form);
+
+        log.info("The registration page has been accessed.");
 
         return response;
     }
@@ -62,6 +57,8 @@ public class UserController {
         ModelAndView response = new ModelAndView();
 
         if(bindingResult.hasErrors()) {
+
+            log.error("There were errors inputting information on the registration page.");
 
             for(ObjectError error : bindingResult.getAllErrors()) {
                 log.info(((FieldError)error).getField() + " " + error.getDefaultMessage());
@@ -98,6 +95,8 @@ public class UserController {
         userRole.setUserRole("USER");
         userRolesDAO.save(userRole);
 
+        log.info("User " + user.getEmail() + " has been created.");
+
         response.setViewName("redirect:/login/login");
         return response;
     }
@@ -112,6 +111,8 @@ public class UserController {
 
         response.addObject("users", users);
 
+        log.info("The user search page has been accessed.");
+
         return response;
     }
 
@@ -122,6 +123,8 @@ public class UserController {
         List<User> users = new ArrayList<>();
 
         if(bindingResult.hasErrors()) {
+
+            log.error("There were errors inputting information on the user search page.");
 
             for(ObjectError error : bindingResult.getAllErrors()) {
                 log.info(((FieldError)error).getField() + " " + error.getDefaultMessage());
@@ -155,15 +158,16 @@ public class UserController {
 
         response.addObject("users", users);
 
+        log.info("User search has completed.");
+
         return response;
     }
 
+    @PreAuthorize("hasAuthority('ADMIN')")
     @GetMapping("/edit/editUser/{userId}")
     public ModelAndView editUser(@PathVariable("userId") Integer userId) throws Exception {
         ModelAndView response = new ModelAndView();
-
         User user = userDAO.findUserById(userId);
-
         EditUserBean form = new EditUserBean();
 
         form.setId(user.getId());
@@ -181,9 +185,13 @@ public class UserController {
 
         response.addObject("form", form);
         response.setViewName("edit/editUser");
+
+        log.info("The edit user page has been accessed for user " + userId + ".");
+
         return response;
     }
 
+    @PreAuthorize("hasAuthority('ADMIN')")
     @PostMapping("/edit/editUserSubmit/{userId}")
     public ModelAndView editUserSubmit(@Valid EditUserBean form, @PathVariable("userId") Integer userId) throws Exception {
         ModelAndView response = new ModelAndView();
@@ -202,6 +210,8 @@ public class UserController {
 
         userDAO.save(user);
 
+        log.info("User " + userId + " has been updated.");
+
         response.addObject("form", form);
         response.setViewName("redirect:/edit/editUser/" + userId);
 
@@ -216,13 +226,51 @@ public class UserController {
 
         if(user.getActive() == 1) {
             user.setActive(0);
+            log.info("User " + userId +" has been marked inactive");
         } else {
             user.setActive(1);
+            log.info("User " + userId +" has been marked active");
         }
 
         userDAO.save(user);
 
         response.setViewName("redirect:/search/userSearch");
+        return response;
+    }
+
+    @GetMapping("/edit/profile")
+    public ModelAndView profile() throws Exception {
+        ModelAndView response = new ModelAndView();
+        User user;
+        EditUserBean form = new EditUserBean();
+        String username;
+
+        Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        if (principal instanceof UserDetails) {
+            username = ((UserDetails) principal).getUsername();
+        } else {
+            username = principal.toString();
+        }
+        user = userDAO.findByEmail(username);
+
+        form.setId(user.getId());
+        form.setEmail(user.getEmail());
+        form.setFirstName(user.getFirstName());
+        form.setLastName(user.getLastName());
+//        form.setPassword(user.getPassword());
+//        form.setConfirmPassword(user.getPassword());
+        form.setAddress(user.getAddress());
+        form.setCity(user.getCity());
+        form.setState(user.getState());
+        form.setZipCode(user.getZipCode());
+        form.setPhoneNumber(user.getPhoneNumber());
+        form.setActive(user.getActive());
+
+        response.addObject("form", form);
+        response.setViewName("edit/editUser");
+
+        log.info("The edit user page has been access for user " + user.getId() + ".");
+
         return response;
     }
 }
