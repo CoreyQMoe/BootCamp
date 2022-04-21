@@ -8,6 +8,7 @@ import lombok.Setter;
 import lombok.ToString;
 import org.hibernate.validator.constraints.Range;
 
+import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Pattern;
 import java.util.List;
 
@@ -18,12 +19,15 @@ public class CartBean {
 
     private String creditCardType;
 
+    @NotBlank(message = "Credit card number cannot be blank")
     @Pattern(regexp = "\\d+", message = "Credit card number can contain only numbers")
     private String creditCardNumber;
 
+    @NotBlank(message = "Credit card expiration date cannot be blank")
     @Pattern(regexp = "^(0[1-9]|1[0-2])\\/?([0-9]{2})$", message = "Expiration date format should be MM/YY")
     private String creditCardExp;
 
+    @NotBlank(message = "Credit Card CSV cannot be blank")
     @Pattern(regexp = "[0-9]{3}|[0-9]{4}", message = "CSV code must contain three or four numbers")
     private String creditCardCSV;
 
@@ -31,9 +35,9 @@ public class CartBean {
 
     private String altCity;
 
-    @Pattern(regexp = "[a-zA-Z]{2}", message = "Enter two character state identifier")
+//    @Pattern(regexp = "[a-zA-Z]{2}", message = "Enter two character state identifier")
     private String altState;
 
-    @Range(min = 501, max = 99950)
+//    @Range(min = 501, max = 99950)
     private Integer altZip;
 }

@@ -61,7 +61,7 @@ public class CartController {
         currentCart = transactionDAO.findPendingTransactionByUserId(user.getId());
         if (currentCart == null) {
             currentCart = new Transaction();
-            transactionDAO.save(currentCart);
+//            transactionDAO.save(currentCart);
             currentCart.setUser(user);
             currentCart.setStatus("PENDING");
             currentCart.setTotal(0.00D);
@@ -78,7 +78,13 @@ public class CartController {
             currentDetail.setItem(itemDAO.findItemById(itemId));
             currentDetail.setQuantity(1);
             transactionDetailDAO.save(currentDetail);
-            currentCart.getDetails().add(currentDetail);
+            if(currentCart.getDetails() == null) {
+                List<TransactionDetail> newDetails = new ArrayList<>();
+                newDetails.add(currentDetail);
+                currentCart.setDetails(newDetails);
+            } else {
+                currentCart.getDetails().add(currentDetail);
+            }
             log.info("Transaction details for item " + itemId + " has been created for transaction " + currentCart.getId());
         } else {
             currentDetail.setQuantity(currentDetail.getQuantity() + 1);
@@ -120,31 +126,38 @@ public class CartController {
         user = userDAO.findByEmail(username);
 
         currentCart = transactionDAO.findPendingTransactionByUserId(user.getId());
-        currentDetails = currentCart.getDetails();
 
-        currentDetails.forEach((detail) -> {
-            costs.add(detail.getItem().getPrice() * detail.getQuantity());
-            items.add(detail.getItem());
-            quantities.add(detail.getQuantity());
-        });
+        if(currentCart != null) {
+            currentDetails = currentCart.getDetails();
 
-        for (Double cost : costs) {
-            subtotal += cost;
+            currentDetails.forEach((detail) -> {
+                costs.add(detail.getItem().getPrice() * detail.getQuantity());
+                items.add(detail.getItem());
+                quantities.add(detail.getQuantity());
+            });
+
+            for (Double cost : costs) {
+                subtotal += cost;
+            }
+
+            subtotal = Math.round(subtotal * 100.0) / 100.0;
+            tax = Math.round((subtotal * 0.06875) * 100.0) / 100.0;
+            total = Math.round((subtotal + tax)*100.0)/100.0;
+
+            currentCart.setTotal(total);
+            transactionDAO.save(currentCart);
+
+            log.info("User " + username + " has opened the cart page.");
+
+            response.addObject("subtotal", subtotal);
+            response.addObject("tax", tax);
+            response.addObject("total", total);
+            response.addObject("items", items);
+            response.addObject("costs", costs);
+            response.addObject("quantities", quantities);
+            response.addObject("transactionID", currentCart.getId());
         }
 
-        subtotal = Math.round(subtotal * 100.0) / 100.0;
-        tax = Math.round((subtotal * 0.06875) * 100.0) / 100.0;
-        total = subtotal + tax;
-
-        log.info("User " + username + " has opened the cart page.");
-
-        response.addObject("subtotal", subtotal);
-        response.addObject("tax", tax);
-        response.addObject("total", total);
-        response.addObject("items", items);
-        response.addObject("costs", costs);
-        response.addObject("quantities", quantities);
-        response.addObject("transactionID", currentCart.getId());
         response.setViewName("/cart/cart");
 
         return response;
@@ -258,6 +271,7 @@ public class CartController {
         }
 
         currentCart.setStatus("PAID");
+        transactionDAO.save(currentCart);
 
         log.info("Order " + currentCart.getId() + " has been completed.");
 

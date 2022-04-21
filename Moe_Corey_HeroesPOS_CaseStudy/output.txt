@@ -1,13 +1,2 @@
-Order number: 11
-Address: alt
-alt, al 12341
-Order: Item(id=1, name=Cape, description=A sleek cape, price=9.99, active=1, created=2022-04-17) Quantity: 2 For: 19.98
-Order: Item(id=10, name=Batmobile, description=Black super hero car, price=10000.99, active=1, created=2021-06-06) Quantity: 1 For: 10000.99
-Order: Item(id=18, name=Magic Lasso, description=Rope that makes people tell the truth, price=1096.99, active=1, created=2022-04-17) Quantity: 1 For: 1096.99
-Order: Item(id=14, name=Justice League, description=Justice League Membership, price=99.99, active=1, created=2022-02-28) Quantity: 1 For: 99.99
-Subtotal: 11217.95
-Tax: 771.23
-Total: 11989.18
-Payment Information: Master Card 12432141241243
-EXP Date: 12/22  CSV: 456
+
 
