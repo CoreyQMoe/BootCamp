@@ -66,22 +66,22 @@ INSERT INTO `items` (`id`, `name`, `description`, `price`, `cost`, `department_i
 CREATE TABLE IF NOT EXISTS `transactions` (
   `id` int(111) NOT NULL AUTO_INCREMENT,
   `users_id` int(111) NOT NULL,
-  `payment` varchar(6) NOT NULL DEFAULT 'CASH',
+  `status` varchar(6) NOT NULL,
   `created` timestamp NOT NULL DEFAULT current_timestamp(),
   PRIMARY KEY (`id`),
   CONSTRAINT `users_id` FOREIGN KEY (`users_id`) REFERENCES `users` (`id`);
 
-INSERT INTO `transactions` (`id`, `users_id`, `created`) VALUES
-	(1, 1, 1, '2022-03-04'),
-	(2, NULL, 1, '2022-03-06'),
-	(3, NULL, 2, '2022-03-03'),
-	(4, NULL, 2, '2022-03-02'),
-	(5, 4, 3, '2022-03-05'),
-	(6, 2, 3, '2022-03-08'),
-	(7, NULL, 4, '2022-03-08'),
-	(8, 3, 4, '2022-03-05'),
-	(9, 5, 5, '2022-03-04'),
-	(10, 1, 5, '2022-03-03');
+INSERT INTO `transactions` (`id`, `users_id`, `status`, `created`) VALUES
+	(1, 1, 'PAID', '2022-03-04'),
+	(2, 1, 'PAID', '2022-03-06'),
+	(3, 2, 'PENDING', '2022-03-03'),
+	(4, 2, 'PAID', '2022-03-02'),
+	(5, 4, 'PAID', '2022-03-05'),
+	(6, 2, 'PAID', '2022-03-08'),
+	(7, 4, 'PAID', '2022-03-08'),
+	(8, 3, 'PENDING', '2022-03-05'),
+	(9, 5, 'PAID', '2022-03-04'),
+	(10, 1, 'PENDING', '2022-03-03');
     
 CREATE TABLE IF NOT EXISTS `transaction_details` (
   `id` int(111) NOT NULL AUTO_INCREMENT,
